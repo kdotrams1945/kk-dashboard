@@ -35,7 +35,7 @@ export default function Home() {
     console.log(data);
     const urlParams = new URLSearchParams(data);
    // const urlProd = `http://localhost:8080/BMI?${urlParams}`;
-    const urlProd = `http://kkbackend-production-d38e.up.railway.app/BMI?${urlParams}`
+    const urlProd = `https://kkbackend-production-d38e.up.railway.app/BMI?${urlParams}`
 
     fetch(urlProd, {
       method: "GET",
