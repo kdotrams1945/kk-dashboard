@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { NextAppProvider } from '@toolpad/core/nextjs';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Person from '@mui/icons-material/Person2Outlined';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import type { Navigation } from '@toolpad/core/AppProvider';
 import LinearProgress from '@mui/material/LinearProgress';
+import type { Navigation } from '@toolpad/core/AppProvider';
+import { NextAppProvider } from '@toolpad/core/nextjs';
+import * as React from 'react';
 import theme from '../theme';
 
 const NAVIGATION: Navigation = [
   {
     kind: 'header',
-    title: 'Main items',
+    title: 'Applications',
   },
   {
     segment: '',
@@ -18,9 +18,9 @@ const NAVIGATION: Navigation = [
     icon: <DashboardIcon />,
   },
   {
-    segment: 'orders',
-    title: 'Orders',
-    icon: <ShoppingCartIcon />,
+    segment: 'BMI',
+    title: 'BMI',
+    icon: <Person/>,
   },
 ];
 
