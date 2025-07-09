@@ -1,16 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Container from '@mui/material/Container';
 import Calculate from '@mui/icons-material/CalculateRounded';
-import Weight from '@mui/icons-material/MonitorWeightRounded';
 import Height from '@mui/icons-material/HeightOutlined';
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import InputAdornment from "@mui/material/InputAdornment";
+import Weight from '@mui/icons-material/MonitorWeightRounded';
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import Container from '@mui/material/Container';
+import InputAdornment from "@mui/material/InputAdornment";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
 
 interface FormValues {
   height: number;
@@ -34,9 +34,10 @@ export default function Home() {
     };
     console.log(data);
     const urlParams = new URLSearchParams(data);
-    const url = `http://localhost:8080/BMI?${urlParams}`;
+   // const urlProd = `http://localhost:8080/BMI?${urlParams}`;
+    const urlProd = `http://kkbackend-production-d38e.up.railway.app/BMI?${urlParams}`
 
-    fetch(url, {
+    fetch(urlProd, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
