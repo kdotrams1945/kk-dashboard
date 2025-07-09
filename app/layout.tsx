@@ -6,6 +6,7 @@ import type { Navigation } from '@toolpad/core/AppProvider';
 import { NextAppProvider } from '@toolpad/core/nextjs';
 import * as React from 'react';
 import theme from '../theme';
+import logo from './images/KRSmall.png'
 
 const NAVIGATION: Navigation = [
   {
@@ -30,7 +31,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <React.Suspense fallback={<LinearProgress />}>
-            <NextAppProvider theme={theme} navigation={NAVIGATION}>
+            <NextAppProvider theme={theme} navigation={NAVIGATION} branding={{
+                logo: <img src={logo.src} alt="KR Calculators" style={{ height: '40px' }}  />,
+                title: 'KleverKapital',
+              }}>
               {children}
             </NextAppProvider>
           </React.Suspense>
