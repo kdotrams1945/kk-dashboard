@@ -10,14 +10,15 @@ import logo from './images/KRSmall.png'
 
 const NAVIGATION: Navigation = [
   {
+    segment: '',
+    title: 'About',
+    icon: <DashboardIcon />,
+  },
+  {
     kind: 'header',
     title: 'Applications',
   },
-  {
-    segment: '',
-    title: 'Dashboard',
-    icon: <DashboardIcon />,
-  },
+  
   {
     segment: 'BMI',
     title: 'BMI',

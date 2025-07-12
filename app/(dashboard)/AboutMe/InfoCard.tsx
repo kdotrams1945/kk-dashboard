@@ -1,9 +1,11 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 
 export interface resumeItem {
     title: string;
     subtitle: string;
     points: string[];
+    link?:string;
+    
 }
 
 
@@ -14,7 +16,7 @@ export const workExperience : resumeItem[] = [
         subtitle: 'University of Illinois At Urbana-Champaign, 8/2024-',
         points: ['Assisted students in understanding fundamental concepts of Java (boolean logic, class structure, polymorphism, etc).', 
         'Provided guidance on Java coding assignments and projects',
-    'Conducted review sessions to help students prepare for exams']
+    'Conducted review sessions to help students prepare for exams'],
     },
     {
         title: 'Math Tutor',
@@ -53,7 +55,8 @@ export const projects : resumeItem[] = [
     {
         title: 'Mortgage Calculator',
         subtitle: 'Java, Springboot, React, Next.js, MaterialUI',
-        points: ['Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts and Optimized custom amortization algorithm to generate 360-month schedule']
+        points: ['Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts and Optimized custom amortization algorithm to generate 360-month schedule'],
+         link : '/BMI'
     },
     {
         title: 'Mortgage Calculator2',
@@ -99,7 +102,7 @@ export const skills : resumeItem[] = [
     {
         title : 'Languages/Frameworks',
         subtitle:'',
-        points: ['Java', 'SQL', 'C++', 'Python', 'React', 'Typescript']
+        points: ['Java, SQL,C++,Python,React,Typescript']
     }
 ]
 
@@ -109,26 +112,13 @@ export function InfoPoint({ point }: { point: string }) {
     return <li>{point}</li>;
   }
   
-  export default function InfoCard(item: resumeItem) {
-    const size1 = item.points && item.points.length == 1;
-    
-    return size1 ?
-    (
-        <Card sx={{ mb: 2 }}>
-          <CardContent>
-            <Typography variant="h6" gutterBottom>
-              {item.title}
-            </Typography>
-            <Typography variant="subtitle2" gutterBottom>
-              {item.subtitle}
-            </Typography>
-    
-            {item.points[0]}
-          </CardContent>
-        </Card>
-      ):
-     (
-      <Card sx={{ mb: 2 }}>
+  export default function InfoCard({ item, elevation }: { item: resumeItem; elevation: number }) {
+    const isSinglePoint = item.points && item.points.length === 1;
+  //  const para = isSi == 0 ? 1 : 0;
+    const linkExists:boolean = item.link != null;
+    return (
+      <Card sx={{ height: '100%', p:  2 , borderRadius:4 }} elevation={elevation} >
+        
         <CardContent>
           <Typography variant="h6" gutterBottom>
             {item.title}
@@ -137,14 +127,52 @@ export function InfoPoint({ point }: { point: string }) {
             {item.subtitle}
           </Typography>
   
-          <ul>
-            {item.points.map((p, i) => (
-                
-              <InfoPoint key={i} point={p} />  
-            ))}
-          </ul>
+          {isSinglePoint ? (
+            <Typography variant="body1">{item.points[0]}</Typography>
+          ) : (
+            <ul>
+              {item.points.map((p, i) => (
+                <InfoPoint key={i} point={p} />
+              ))}
+            </ul>
+          )}
+          {linkExists ?
+          <CardActions  sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button size="small"  variant="outlined" href={item.link} sx={{alignItems:'end'}}>show</Button>
+       
+      </CardActions> :<div/>
+  }
         </CardContent>
       </Card>
     );
   }
+    
+  export  function Infoormation({ item}: { item: resumeItem}) {
+    const isSinglePoint = item.points && item.points.length === 1;
   
+    return (
+   
+        
+        <div>
+          <Typography variant="h6" gutterBottom>
+            {item.title}
+          </Typography>
+          <Typography variant="subtitle2" gutterBottom>
+            {item.subtitle}
+          </Typography>
+  
+          {isSinglePoint ? (
+            <Typography variant="body1">{item.points[0]}</Typography>
+          ) : (
+            <ul>
+              {item.points.map((p, i) => (
+                <InfoPoint key={i} point={p} />
+              ))}
+            </ul>
+          )}
+        
+  
+        </div>
+  
+    );
+  }

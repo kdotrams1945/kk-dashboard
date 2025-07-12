@@ -1,7 +1,12 @@
-import { Box, Stack, Typography, Grid } from "@mui/material";
-import InfoCard, { resumeItem, workExperience, education,projects, awards,skills } from "./InfoCard";
+import { Box, Stack, Typography, Grid, Icon, Paper } from "@mui/material";
+import InfoCard, { resumeItem, workExperience, education,projects, awards,skills, Infoormation } from "./InfoCard";
 import { Work } from "@mui/icons-material";
 import SchoolIcon from '@mui/icons-material/School';
+import { SvgIconComponent } from "@mui/icons-material";
+import HomeRepairServiceOutlinedIcon from '@mui/icons-material/HomeRepairServiceOutlined';
+import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 export default function HomePage() {
 
   return (
@@ -17,16 +22,16 @@ export default function HomePage() {
         </Grid>
         <Grid size={12}>
         
-        {showCategory("Education","column", education, 12)}
+        {showCategory2("Education","column", education, 12, SchoolIcon,1)}
       </Grid>
       <Grid size={12}>
-         {showCategory("Skills", "column", skills,12)}
+         {showCategory2("Skills", "column", skills,12,HomeRepairServiceOutlinedIcon,0)}
       </Grid>
       
-      <Grid size={12}>{showCategory("Projects","row", projects, 4)}</Grid>
+      <Grid size={12}>{showCategory("Projects","row", projects, 4, WidgetsOutlinedIcon,1)}</Grid>
       <Grid size={12}>
-        {showCategory("Awards","column", awards, 12)}</Grid>
-      <Grid size={12}>{showCategory("Work Experience", "column", workExperience,12)}</Grid>
+        {showCategory("Awards","row", awards, 4, MilitaryTechOutlinedIcon,1)}</Grid>
+      <Grid size={12}>{showCategory2("Work Experience", "column", workExperience,12, WorkOutlineOutlinedIcon,0)}</Grid>
     </Grid>
   );
 }
@@ -39,23 +44,56 @@ machine learning to help teams achieve company goals.
 </Typography>);
 }
 
-function showCategory(category: string, dir:string, x: resumeItem[],  sz:number) {
-    const d: "row" | "column" = dir === "row" ? "row" : "column";
+function showCategory(category: string, dir:string, x: resumeItem[],  sz:number, 
+  Icon:SvgIconComponent, spacing:number ) {
+   // const d: "row" | "column" = dir === "row" ? "row" : "column";
 
   return (
-    <Box>
-      <Typography variant="h5" gutterBottom>
-        {category}
+    <Paper variant="outlined" sx={{p:3}} >
+        <Stack direction={"row"} spacing={5} alignItems="center">
+        <Icon sx={{color:"Purple", fontSize:40, border:'aqua'}} />
+      <Typography variant="h5">
+        {category}  
       </Typography>
 
-     
-      <Grid container spacing={3}>
+         
+          </Stack>
+      <Grid container spacing={spacing} alignItems="stretch">
         {x.map((item) => (
             <Grid size={sz}>
-          <InfoCard key={item.title} {...item} />
+          <InfoCard key={item.title} item={item} elevation={spacing} />
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Paper>
   );
 }
+
+function showCategory2(category: string, dir:string, x: resumeItem[],  sz:number, 
+  Icon:SvgIconComponent, spacing:number ) {
+  
+
+  return (
+    <Paper variant="outlined" sx={{p:3}} >
+        <Stack direction={"row"} spacing={5} alignItems="center">
+        <Icon sx={{color:"Purple", fontSize:40, border:'aqua'}} />
+      <Typography variant="h5">
+        {category}  
+      </Typography>
+     
+          </Stack>
+          <div>
+        &nbsp;
+      </div>
+         
+      <Grid container spacing={spacing} alignItems="stretch">
+        {x.map((item) => (
+            <Grid size={sz}>
+          <Infoormation key={item.title} item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </Paper>
+  );
+}
+
