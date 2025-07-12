@@ -23,6 +23,10 @@ const NAVIGATION: Navigation = [
     title: 'BMI',
     icon: <Person/>,
   },
+  {segment: 'AboutMe',
+  title: 'About Me',
+  icon: <Person/>
+  },
 ];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
