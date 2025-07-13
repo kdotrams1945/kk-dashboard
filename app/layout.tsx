@@ -9,11 +9,15 @@ import theme from '../theme';
 import logo from './images/KRSmall.png'
 
 const NAVIGATION: Navigation = [
-  {
-    segment: '',
-    title: 'About',
-    icon: <DashboardIcon />,
+  {segment: '',
+  title: 'About Me',
+  icon: <Person/>
   },
+  // {
+  //   segment: '',
+  //   title: 'About',
+  //   icon: <DashboardIcon />,
+  // },
   {
     kind: 'header',
     title: 'Applications',
@@ -24,10 +28,7 @@ const NAVIGATION: Navigation = [
     title: 'BMI',
     icon: <Person/>,
   },
-  {segment: 'AboutMe',
-  title: 'About Me',
-  icon: <Person/>
-  },
+  
 ];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

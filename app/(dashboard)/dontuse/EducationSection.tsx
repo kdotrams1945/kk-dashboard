@@ -1,7 +1,7 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { documentItem } from "./DocItem";
+import { documentItem } from "../DocItem";
 import UIUCPhoto from "./UIUC_photo.png";
 
 export default function EducationSection(item: documentItem) {

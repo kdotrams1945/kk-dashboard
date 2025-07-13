@@ -1,11 +1,137 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Link from 'next/link';
-
+import RaisedBorderCard from "@/app/components/RaisedBorderCard";
+import { SvgIconComponent } from "@mui/icons-material";
+import HomeRepairServiceOutlinedIcon from '@mui/icons-material/HomeRepairServiceOutlined';
+import LightbulbCircleOutlinedIcon from '@mui/icons-material/LightbulbCircleOutlined';
+import MilitaryTechOutlinedIcon from '@mui/icons-material/MilitaryTechOutlined';
+import SchoolIcon from '@mui/icons-material/SchoolOutlined';
+import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
+import { Grid, Stack, Typography } from "@mui/material";
+import { documentItem } from "./DocItem";
+import { DocItemOnCard,DocItemPoint,DocItemPlain } from "./DocItem";
+import { education, projects, awards, workExperience, skillIcons } from "./AboutMeData";
 export default function HomePage() {
+
   return (
-    <Typography>
-      Welcome to <Link href="https://mui.com/toolpad/core/introduction">Toolpad Core!</Link>
-    </Typography>
+    <Grid
+      container
+      display={"flex"}
+      rowSpacing={5}
+      columnSpacing={{ xs: 1, sm: 2, md: 5 }}
+      columns={{ xs: 8, sm: 12 }}
+    >
+        <Grid size={12}>
+       <MyDescription/>
+        </Grid>
+        <Grid size={12}>
+        
+        {showCategoryOnSingleCard("Education","column", education, 12, SchoolIcon,1)}
+      </Grid>
+      <Grid size={12}>
+         {/* {showCategory2("Skills", "column", skills,12,HomeRepairServiceOutlinedIcon,0)} */}
+         {showSkills()}
+      </Grid>
+      
+      <Grid size={12}>{showCategory("Projects","row", projects, 4, LightbulbCircleOutlinedIcon,1)}</Grid>
+      <Grid size={12}>
+        {showCategory("Awards","row", awards, 4, MilitaryTechOutlinedIcon,1)}</Grid>
+      <Grid size={12}>{showCategoryOnSingleCard("Work Experience", "column", workExperience,12, WorkOutlineOutlinedIcon,0)}</Grid>
+    </Grid>
   );
 }
+
+function MyDescription() {
+    return ( <Typography variant="h5" gutterBottom>
+    Hardworking and passionate job seeker with strong analytical skills eager to secure
+Software Engineer Intenship position. Interested in using financial engineering and
+machine learning to help teams achieve company goals. 
+</Typography>);
+}
+
+function showCategory(category: string, dir:string, x: documentItem[],  sz:number, 
+  Icon:SvgIconComponent, spacing:number ) {
+   // const d: "row" | "column" = dir === "row" ? "row" : "column";
+
+  return (
+    <RaisedBorderCard variant="outlined" >
+        <Stack direction={"row"} spacing={2} alignItems="center">
+        <Icon
+  sx={{
+    color: "purple",          // icon fill / font colour
+    fontSize: 40,             // icon size
+    // border: "3px solid aqua", // width · style · colour  ← easiest shorthand
+    // borderRadius: "10%",      // optional – round outline
+  //  p: 0.5    ,             
+  //  boxShadow: "0 0 6px 2px rgba(0, 255, 255, 0.6)"
+                     }}
+/>
+      <Typography variant="h5" >
+        {category}  
+      </Typography>
+
+         
+          </Stack>
+          <div>&nbsp;</div>
+      <Grid container spacing={spacing} alignItems="stretch">
+        {x.map((item) => (
+            <Grid size={sz}>
+          <DocItemOnCard key={item.title} item={item} elevation={spacing} />
+          </Grid>
+        ))}
+      </Grid>
+    </RaisedBorderCard>
+  );
+}
+
+function showSkills()
+{
+  return (
+    <RaisedBorderCard variant="outlined" sx={{p:4}} >
+        <Stack direction={"row"} spacing={2} alignItems="center">
+        <HomeRepairServiceOutlinedIcon sx={{color:"Purple", fontSize:40, border:'aqua'}} />
+      <Typography variant="h5">
+        Skills 
+      </Typography>
+     
+          </Stack>
+          <div>&nbsp;</div>
+          <Stack direction={"row"} spacing={10} >
+          {skillIcons.map(({ Icon, name,color }) => (
+            <Stack direction={"column"} justifyContent={"center"} alignItems={"center"} >
+              <Icon fontSize={60} color={color}/>
+              {name}
+            </Stack>
+          ))}
+          </Stack>
+         
+     </RaisedBorderCard>)
+}
+function showCategoryOnSingleCard(category: string, dir:string, x: documentItem[],  sz:number, 
+  Icon:SvgIconComponent, spacing:number ) {
+  
+
+  return (
+    <RaisedBorderCard>
+        <Stack direction={"row"} spacing={2} alignItems="center">
+        <Icon sx={{color:"Purple", fontSize:40, border:'aqua'}} />
+      <Typography variant="h5">
+        {category}  
+      </Typography>
+     
+          </Stack>
+          <div>
+        &nbsp;
+      </div>
+         
+      <Grid container spacing={spacing} alignItems="stretch">
+        {x.map((item) => (
+            <Grid size={sz}>
+          <DocItemPlain key={item.title} item={item} />
+          
+      
+          </Grid>
+        ))}
+      </Grid>
+    </RaisedBorderCard>
+  );
+}
+
