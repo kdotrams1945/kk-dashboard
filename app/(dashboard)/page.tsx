@@ -104,7 +104,7 @@ function showCategory(
       <div>&nbsp;</div>
       <Grid container spacing={spacing} alignItems="stretch">
         {x.map((item, i) => (
-          <Grid size={sz}>
+          <Grid size={sz} key={i}>
             <DocItemOnCard key={i} item={item} elevation={spacing} />
           </Grid>
         ))}
@@ -129,6 +129,7 @@ function showSkills() {
             direction={"column"}
             justifyContent={"center"}
             alignItems={"center"}
+            key={_i}
           >
             <Icon fontSize={60} color={color} />
             {name}
@@ -156,7 +157,7 @@ function showCategoryOnSingleCard(
 
       <Grid container spacing={spacing} alignItems="stretch">
         {itmes.map((item, i) => (
-          <Grid size={sz}>
+          <Grid size={sz} key={i}>
             <DocItemPlain key={i} item={item} />
           </Grid>
         ))}
