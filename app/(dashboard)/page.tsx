@@ -103,9 +103,9 @@ function showCategory(
       </Stack>
       <div>&nbsp;</div>
       <Grid container spacing={spacing} alignItems="stretch">
-        {x.map((item) => (
+        {x.map((item, i) => (
           <Grid size={sz}>
-            <DocItemOnCard key={item.title} item={item} elevation={spacing} />
+            <DocItemOnCard key={i} item={item} elevation={spacing} />
           </Grid>
         ))}
       </Grid>
@@ -124,7 +124,7 @@ function showSkills() {
       </Stack>
       <div>&nbsp;</div>
       <Stack direction={"row"} spacing={10}>
-        {skillIcons.map(({ Icon, name, color }) => (
+        {skillIcons.map(({ Icon, name, color },_i) => (
           <Stack
             direction={"column"}
             justifyContent={"center"}
@@ -155,9 +155,9 @@ function showCategoryOnSingleCard(
       <div>&nbsp;</div>
 
       <Grid container spacing={spacing} alignItems="stretch">
-        {itmes.map((item) => (
+        {itmes.map((item, i) => (
           <Grid size={sz}>
-            <DocItemPlain key={item.title} item={item} />
+            <DocItemPlain key={i} item={item} />
           </Grid>
         ))}
       </Grid>
