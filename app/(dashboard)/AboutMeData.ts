@@ -64,15 +64,16 @@ export const projects: DocumentItem[] = [
     title: "Mortgage Calculator",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
-      "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts and Optimized custom amortization algorithm to generate 360-month schedule",
+      "Developed a loan-amortization app that calculates schedules in real time from user inputs, visualized loan balance and principal-vs-interest splits with responsive area & pie charta, and optimized custom amortization algorithm to generate a month-to-month schedule.",
     ],
     link: "/BMI",
   },
   {
-    title: "Mortgage Calculator2",
+    title: "Options Pricing Calculator",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
-      "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts, Optimized custom amortization algorithm to generate 360-month schedule",
+      "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot API",
+      "Built a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios"
     ],
   },
   {

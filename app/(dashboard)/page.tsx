@@ -71,10 +71,12 @@ export default function HomePage() {
 function MyDescription() {
   return (
     <Typography variant="h5" gutterBottom>
-      Hardworking and passionate job seeker with strong analytical skills eager
-      to secure Software Engineer Intenship position. Interested in using
-      financial engineering and machine learning to help teams achieve company
-      goals.
+      Analytical third year computer-science student with an interest for turning complex 
+      financial ideas into clean, scalable code. 
+      Built end-to-end loan-amortization and Black-Scholes options-pricing apps 
+      with Java/Spring Boot, React, MaterialUI, and MongoDB. Eager to bring the same blend of 
+      financial insight and programming rigor to a Software Engineer Internship—and 
+      ship features that move the most relevant metrics.
     </Typography>
   );
 }
