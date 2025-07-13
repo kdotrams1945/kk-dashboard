@@ -1,10 +1,10 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { documentItem } from "../DocItem";
+import { DocumentItem } from "../DocItem";
 import UIUCPhoto from "./UIUC_photo.png";
 
-export default function EducationSection(item: documentItem) {
+export default function EducationSection(item: DocumentItem) {
     return (
       <Box sx={{ position: "relative" }}>
         <docItemOnCard {...item} />
