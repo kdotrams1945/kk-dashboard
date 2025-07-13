@@ -21,7 +21,7 @@ export default function HomePage() {
       display={"flex"}
       rowSpacing={5}
       columnSpacing={{ xs: 1, sm: 2, md: 5 }}
-      columns={{ xs: 8, sm: 12 }}
+      columns={{ xs: 4, sm: 8, md:12 }}
     >
       <Grid size={12}>
         <MyDescription />
@@ -37,7 +37,6 @@ export default function HomePage() {
         )}
       </Grid>
       <Grid size={12}>
-        {/* {showCategory2("Skills", "column", skills,12,HomeRepairServiceOutlinedIcon,0)} */}
         {showSkills()}
       </Grid>
 
@@ -46,7 +45,7 @@ export default function HomePage() {
           "Projects",
           "row",
           projects,
-          4,
+          6,
           LightbulbCircleOutlinedIcon,
           1
         )}
@@ -102,7 +101,7 @@ function showCategory(
         <Typography variant="h5">{category}</Typography>
       </Stack>
       <div>&nbsp;</div>
-      <Grid container spacing={spacing} alignItems="stretch">
+      <Grid container spacing={spacing} columns={{ xs: 4, sm: 12 }} alignItems="stretch">
         {x.map((item, i) => (
           <Grid size={sz} key={i}>
             <DocItemOnCard key={i} item={item} elevation={spacing} />
@@ -123,8 +122,9 @@ function showSkills() {
         <Typography variant="h5">Skills</Typography>
       </Stack>
       <div>&nbsp;</div>
-      <Stack direction={"row"} spacing={10}>
+      <Grid container spacing={2} columns={{ xs: 4, sm: 8, md:12 }} alignItems="stretch">
         {skillIcons.map(({ Icon, name, color },_i) => (
+          <Grid size={2}>
           <Stack
             direction={"column"}
             justifyContent={"center"}
@@ -134,8 +134,9 @@ function showSkills() {
             <Icon fontSize={60} color={color} />
             {name}
           </Stack>
+          </Grid>
         ))}
-      </Stack>
+      </Grid>
     </RaisedBorderCard>
   );
 }
