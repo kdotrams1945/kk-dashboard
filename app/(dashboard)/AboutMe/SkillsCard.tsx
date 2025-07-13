@@ -14,7 +14,9 @@ import {
   SiCplusplus,
   SiMysql,
   SiReact,
-  SiTypescript,
+  SiTypescript, 
+  SiMongodb, 
+  SiSpringboot
 } from "react-icons/si";
 import { DiJava } from "react-icons/di";
 
@@ -36,6 +38,9 @@ const skills = [
   { name: "SQL",         Icon: SiMysql,      color: "#00758F", dx: 5, dy: 6 },
   { name: "React",       Icon: SiReact,      color: "#61DAFB", dx: 9, dy: 8 },
   { name: "Typescript",  Icon: SiTypescript, color: "#3178C6", dx: 6, dy:10 },
+  { name: "SpringBoot",  Icon: SiSpringboot, color: "#3178C6", dx: 6, dy:10 },
+  { name: "MongoDB",  Icon: SiMongodb, color: "#3178C6", dx: 6, dy:10 },
+ 
 ];
 
 export default function SkillsCard() {

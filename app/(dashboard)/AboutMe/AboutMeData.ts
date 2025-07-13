@@ -1,16 +1,16 @@
-import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
+import { DiJava } from "react-icons/di";
+import {
+    SiCplusplus,
+    SiMongodb,
+    SiMysql,
+    SiPython,
+    SiReact,
+    SiSpringboot,
+    SiTypescript
+} from "react-icons/si";
+import { documentItem } from "./DocItem";
 
-export interface resumeItem {
-    title: string;
-    subtitle: string;
-    points: string[];
-    link?:string;
-    
-}
-
-
-
-export const workExperience : resumeItem[] = [
+export const workExperience : documentItem[] = [
     {
         title: 'Assistant Tutor in CS124 : Intro to Computer Science I',
         subtitle: 'University of Illinois At Urbana-Champaign, 8/2024-',
@@ -33,7 +33,7 @@ export const workExperience : resumeItem[] = [
     },
 ]
 
-export const education : resumeItem[] = [
+export const education : documentItem[] = [
     {
         title: 'Bachelor of Science in Math and Computer Science',
         subtitle: 'University of Illinois At Urbana-Champaign, 8/2023-Present',
@@ -51,7 +51,7 @@ export const education : resumeItem[] = [
     }
 ]
 
-export const projects : resumeItem[] = [
+export const projects : documentItem[] = [
     {
         title: 'Mortgage Calculator',
         subtitle: 'Java, Springboot, React, Next.js, MaterialUI',
@@ -80,7 +80,7 @@ export const projects : resumeItem[] = [
     }
 ]
 
-export const awards : resumeItem[] = [
+export const awards : documentItem[] = [
     {
         title: 'National Merit Scholarship',
         subtitle: 'National Merit Scholarship Corporation',
@@ -98,81 +98,25 @@ export const awards : resumeItem[] = [
     }
 ]
 
-export const skills : resumeItem[] = [
+export const skills : documentItem[] = [
     {
         title : 'Languages/Frameworks',
         subtitle:'',
-        points: ['Java, SQL,C++,Python,React,Typescript']
+        points: ['Java, SQL, C++, Python, React, Typescript, SpringBoot']
     }
 ]
 
 
-
-export function InfoPoint({ point }: { point: string }) {
-    return <li>{point}</li>;
-  }
-  
-  export default function InfoCard({ item, elevation }: { item: resumeItem; elevation: number }) {
-    const isSinglePoint = item.points && item.points.length === 1;
-  //  const para = isSi == 0 ? 1 : 0;
-    const linkExists:boolean = item.link != null;
-    return (
-      <Card sx={{ height: '100%', p:  2 , borderRadius:4 }} elevation={elevation} >
-        
-        <CardContent>
-          <Typography variant="h6" gutterBottom>
-            {item.title}
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            {item.subtitle}
-          </Typography>
-  
-          {isSinglePoint ? (
-            <Typography variant="body1">{item.points[0]}</Typography>
-          ) : (
-            <ul>
-              {item.points.map((p, i) => (
-                <InfoPoint key={i} point={p} />
-              ))}
-            </ul>
-          )}
-          {linkExists ?
-          <CardActions  sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Button size="small"  variant="outlined" href={item.link} sx={{alignItems:'end'}}>show</Button>
-       
-      </CardActions> :<div/>
-  }
-        </CardContent>
-      </Card>
-    );
-  }
-    
-  export  function Infoormation({ item}: { item: resumeItem}) {
-    const isSinglePoint = item.points && item.points.length === 1;
-  
-    return (
+export const skillIcons = [
+    { name: "Java",        Icon: DiJava,       color: "#F89820", dx: 6, dy: 7 },
+    { name: "Python",      Icon: SiPython,     color: "#3776AB", dx: 8, dy: 5 },
+    { name: "C++",         Icon: SiCplusplus,  color: "#00599C", dx: 7, dy: 9 },
+    { name: "SQL",         Icon: SiMysql,      color: "#00758F", dx: 5, dy: 6 },
+    { name: "React",       Icon: SiReact,      color: "#61DAFB", dx: 9, dy: 8 },
+    { name: "Typescript",  Icon: SiTypescript, color: "#3178C6", dx: 6, dy:10 },
+    { name: "SpringBoot",  Icon: SiSpringboot, color: "#3178C6", dx: 6, dy:10 },
+    { name: "MongoDB",  Icon: SiMongodb, color: "#3178C6", dx: 6, dy:10 },
    
-        
-        <div>
-          <Typography variant="h6" gutterBottom>
-            {item.title}
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            {item.subtitle}
-          </Typography>
+  ];
   
-          {isSinglePoint ? (
-            <Typography variant="body1">{item.points[0]}</Typography>
-          ) : (
-            <ul>
-              {item.points.map((p, i) => (
-                <InfoPoint key={i} point={p} />
-              ))}
-            </ul>
-          )}
-        
-  
-        </div>
-  
-    );
-  }
+
