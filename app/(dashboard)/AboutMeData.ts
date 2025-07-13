@@ -72,8 +72,7 @@ export const projects: DocumentItem[] = [
     title: "Options Pricing Calculator",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
-      "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot API",
-      "Built a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios"
+      "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot API. Developed a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios"
     ],
   },
   {
@@ -90,13 +89,7 @@ export const projects: DocumentItem[] = [
       "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts, Optimized custom amortization algorithm to generate 360-month schedule",
     ],
   },
-  {
-    title: "Mortgage Calculator3",
-    subtitle: "Java, Springboot, React, Next.js, MaterialUI",
-    points: [
-      "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs",
-    ],
-  },
+
 ];
 
 export const awards: DocumentItem[] = [
