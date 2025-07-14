@@ -41,8 +41,8 @@ export default function Home() {
     };
     console.log(data);
     const urlParams = new URLSearchParams(data);
-    const url = `http://localhost:8080/amortizationSchedule?${urlParams}`;
-
+   // const url = `http://localhost:8080/amortizationSchedule?${urlParams}`;
+const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedule?${urlParams}`;
     fetch(url, {
       method: "GET",
       headers: {
@@ -302,7 +302,7 @@ function PaymentCharts({ s }: { s: AmortizationSchedule|null }) {
       }}
     >
       <LineChart
-        dataset={data}
+        dataset={data as any}
         height={400}
         width={400}
         xAxis={[
@@ -348,7 +348,7 @@ function LoanBalanceChart({ s }: { s: AmortizationSchedule|null }) {
       }}
     >
       <LineChart
-        dataset={data}
+        dataset={data as any}
         height={400}
         width={500}
         xAxis={[
