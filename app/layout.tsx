@@ -9,6 +9,8 @@ import theme from '../theme';
 import logo from './images/KKLogoNew.png'
 import { Home } from '@mui/icons-material';
 
+import Image from 'next/image'
+
 const NAVIGATION: Navigation = [
   {segment: '',
   title: 'About Me',
@@ -44,7 +46,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <React.Suspense fallback={<LinearProgress />}>
             <NextAppProvider theme={theme} navigation={NAVIGATION} branding={{
-                logo: <img src={logo.src} alt="KR Calculators" style={{ height: '40px' }}  />,
+                logo: <Image src={logo.src} alt="KR Calculators" width={30}   // adjust as needed
+                height={40}  />,
                 title: 'KleverKapital',
               }}>
               {children}
