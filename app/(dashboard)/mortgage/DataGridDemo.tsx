@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Box from "@mui/material/Box";
-import { AmortizationSchedule } from "./DataModel";
+import { AmortizationPeriodDetail, AmortizationSchedule } from "./DataModel";
 
 import { DataGrid, GridColDef, gridClasses } from "@mui/x-data-grid";
 import { alpha, styled } from "@mui/material/styles";
@@ -69,14 +69,17 @@ export const columns: GridColDef<(typeof rows)[number]>[] = [
 ];
 export function DataGridDemo({
   s,}: { s: AmortizationSchedule;}) {
-  const data = s== null ? [] : React.useMemo(
-    () => 
-     // var details = s.details;
-      s.details.filter(
-        (d) => (d.period - 1) % 12 === 0 || d.period === s.details.length
-      ),
-    [s]
-  );
+    const data: AmortizationPeriodDetail[] = React.useMemo<AmortizationPeriodDetail[]>(
+      () => {
+        if (s == null) {
+          return [];
+        }
+        return s.details.filter(
+          (d) => (d.period - 1) % 12 === 0 || d.period === s.details.length
+        );
+      },
+      [s]
+    );
 
 
   return (

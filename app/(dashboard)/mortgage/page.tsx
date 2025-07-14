@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { PieChart } from "@mui/x-charts/PieChart";
-import { AmortizationSchedule, FormValues } from "./DataModel";
+import { AmortizationSchedule, FormValues, AmortizationPeriodDetail } from "./DataModel";
 import { DataGridDemo } from "./DataGridDemo";
 import { SpaceBar } from "@mui/icons-material";
 import Divider from "@mui/material/Divider";
@@ -73,7 +73,10 @@ export default function Home() {
 
         // alignItems={'stretch'}
       >
-        <Grid size={4}>{showForm()}</Grid>
+        {/* <Grid size={4}>{showForm()}</Grid> */}
+        <Grid size={4}>
+  {!isCalculated && showForm()}
+</Grid>
         <Grid size={4}>{showMonthlyPayment(schedule)}</Grid>
         <Grid size={4}>
           {isCalculated ? (
@@ -287,19 +290,10 @@ function showMonthlyPayment(b: AmortizationSchedule) {
   }
   return null;
 }
-function LoanInput(formValues: FormValues) {}
+
 function PaymentCharts({ s }: { s: AmortizationSchedule }) {
-  const data =
-    s == null
-      ? []
-      : React.useMemo(
-          () =>
-            // var details = s.details;
-            s.details.filter(
-              (d) => (d.period - 1) % 12 === 0 || d.period === s.details.length
-            ),
-          [s]
-        );
+
+  const data: AmortizationPeriodDetail[] = newFunction(s);
 
   return (
     <RaisedBorderCard
@@ -344,18 +338,24 @@ function PaymentCharts({ s }: { s: AmortizationSchedule }) {
   );
 }
 
+function newFunction(s: AmortizationSchedule): AmortizationPeriodDetail[] {
+  return React.useMemo<AmortizationPeriodDetail[]>(
+    () => {
+      if (s == null) {
+        return [];
+      }
+      return s.details.filter(
+        (d) => (d.period - 1) % 12 === 0 || d.period === s.details.length
+      );
+    },
+    [s]
+  );
+}
+
 function PaymentCharts2({ s }: { s: AmortizationSchedule }) {
-  const data =
-    s == null
-      ? []
-      : React.useMemo(
-          () =>
-            // var details = s.details;
-            s.details.filter(
-              (d) => (d.period - 1) % 12 === 0 || d.period === s.details.length
-            ),
-          [s]
-        );
+ 
+  
+  const data = newFunction(s);
 
   return (
     <RaisedBorderCard
