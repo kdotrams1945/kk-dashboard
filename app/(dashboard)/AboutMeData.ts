@@ -74,6 +74,7 @@ export const projects: DocumentItem[] = [
     points: [
       "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot API. Developed a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios"
     ],
+    link: "/options",
   },
   {
     title: "Mortgage Calculator12",

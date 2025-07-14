@@ -26,7 +26,7 @@ export function DocItemOnCard({
 }) {
   const linkExists: boolean = item.link != null;
   return (
-    <Card sx={{ height: "100%", p: 2, borderRadius: 4 }} elevation={elevation}>
+    <Card sx={{ height: "100%", p: 2, borderRadius: 8 }} elevation={elevation}>
       <CardContent>
         {DocItemPlain({ item })}
         {linkExists ? (

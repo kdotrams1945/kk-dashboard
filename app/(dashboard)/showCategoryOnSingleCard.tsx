@@ -18,6 +18,7 @@ export function showCategoryOnSingleCard(
         <Icon sx={{ color: "Purple", fontSize: 40, border: "aqua" }} />
         <Typography variant="h5">{category}</Typography>
       </Stack>
+      
       <div>&nbsp;</div>
 
       <Grid container spacing={spacing} alignItems="stretch">
