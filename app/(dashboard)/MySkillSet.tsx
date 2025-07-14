@@ -13,13 +13,13 @@ export function MySkillSet() {
       </Stack>
       <div>&nbsp;</div>
       <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="stretch">
-        {skillIcons.map(({ Icon, name, color }, _i) => (
+        {skillIcons.map(({ Icon, name, color }, i) => (
           <Grid size={2}>
             <Stack
               direction={"column"}
               justifyContent={"center"}
               alignItems={"center"}
-              key={_i}
+              key={i}
             >
               <Icon fontSize={60} color={color} />
               {name}
