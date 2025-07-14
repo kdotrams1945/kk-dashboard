@@ -13,6 +13,7 @@
     "@mui/icons-material": "^7",
     "@mui/material": "^7",
     "@mui/material-nextjs": "^7",
+    "@mui/x-charts": "^8.8.0",
     "@toolpad/core": "^0.14.0",
     "framer-motion": "^12.23.3",
     "next": "^15",

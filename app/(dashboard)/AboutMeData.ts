@@ -66,7 +66,7 @@ export const projects: DocumentItem[] = [
     points: [
       "Developed a loan-amortization app that calculates schedules in real time from user inputs, visualized loan balance and principal-vs-interest splits with responsive area & pie charta, and optimized custom amortization algorithm to generate a month-to-month schedule.",
     ],
-    link: "/BMI",
+    link: "/mortgage",
   },
   {
     title: "Options Pricing Calculator",

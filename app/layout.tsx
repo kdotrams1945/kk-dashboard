@@ -7,6 +7,7 @@ import { NextAppProvider } from '@toolpad/core/nextjs';
 import * as React from 'react';
 import theme from '../theme';
 import logo from './images/KRSmall.png'
+import { Home } from '@mui/icons-material';
 
 const NAVIGATION: Navigation = [
   {segment: '',
@@ -28,6 +29,11 @@ const NAVIGATION: Navigation = [
     title: 'BMI',
     icon: <Person/>,
   },
+  {
+    segment: 'mortgage',
+    title: 'Mortgage',
+    icon: <Home/>,
+  }
   
 ];
 
