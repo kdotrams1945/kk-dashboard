@@ -95,13 +95,13 @@ export default function Home() {
         </Grid>
         <Grid size={8}>
           {isCalculated ? (
-            <Card>
+            <RaisedBorderCard>
               <CardContent>
                 <Box mt={4}>
                   <DataGridDemo s={schedule} />
                 </Box>
               </CardContent>
-            </Card>
+            </RaisedBorderCard>
           ) : (
             <div />
           )}
@@ -223,7 +223,7 @@ function showMonthlyPayment(b: AmortizationSchedule) {
       principalPayment += num.principalPayment;
     }
     return (
-      <Card
+      <RaisedBorderCard
         sx={{
           
           height: "100%",
@@ -282,7 +282,7 @@ function showMonthlyPayment(b: AmortizationSchedule) {
             Total interest payments ${interestPaymentsTotal.toFixed(2)}
           </Typography> */}
         </CardContent>
-      </Card>
+      </RaisedBorderCard>
     );
   }
   return null;
@@ -302,7 +302,7 @@ function PaymentCharts({ s }: { s: AmortizationSchedule }) {
         );
 
   return (
-    <Paper
+    <RaisedBorderCard
       elevation={15}
       sx={{
         display: "grid",
@@ -340,7 +340,7 @@ function PaymentCharts({ s }: { s: AmortizationSchedule }) {
           },
         ]}
       />
-    </Paper>
+    </RaisedBorderCard>
   );
 }
 
@@ -358,7 +358,7 @@ function PaymentCharts2({ s }: { s: AmortizationSchedule }) {
         );
 
   return (
-    <Card
+    <RaisedBorderCard
       sx={{
         display: "grid",
         justifyContent: "center", // Centers horizontally
@@ -385,6 +385,6 @@ function PaymentCharts2({ s }: { s: AmortizationSchedule }) {
           },
         ]}
       />
-    </Card>
+    </RaisedBorderCard>
   );
 }

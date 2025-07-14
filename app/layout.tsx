@@ -6,7 +6,7 @@ import type { Navigation } from '@toolpad/core/AppProvider';
 import { NextAppProvider } from '@toolpad/core/nextjs';
 import * as React from 'react';
 import theme from '../theme';
-import logo from './images/KRSmall.png'
+import logo from './images/KKLogoNew.png'
 import { Home } from '@mui/icons-material';
 
 const NAVIGATION: Navigation = [
