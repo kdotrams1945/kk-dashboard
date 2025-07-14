@@ -14,20 +14,19 @@ export interface RaisedBorderCardProps extends CardProps {
   borderColor?: string;
   borderWidth?: number;
   shadow?: string;
+  padding?:number;
 }
 
 /* Styled wrapper so you can swap gradient / radius / border in one place. */
 const StyledCard = styled(Card, {
   shouldForwardProp: (prop) =>
-    prop !== 'borderColor' && prop !== 'borderWidth' && prop !== 'shadow',
-})<RaisedBorderCardProps>(({ theme, borderColor, borderWidth, shadow }) => ({
+    prop !== 'borderColor' && prop !== 'borderWidth' && prop !== 'shadow' && prop !=='padding' ,
+})<RaisedBorderCardProps>(({ theme, borderColor, borderWidth, shadow ,padding}) => ({
   border: `${borderWidth ?? 2}px solid ${borderColor ?? theme.palette.divider}`,
   borderRadius: `24px`, // a tad rounder than default
   boxShadow: shadow ?? '0 6px 16px rgba(80, 180, 255,0.25)',
- // m:10,
-  // optional: let users override with `sx` later
- // backgroundColor: theme.palette.background.paper,
-  padding: theme.spacing(4),   
+
+  padding: theme.spacing(padding ?? 4),   
 }));
 
 /** Re-usable “raised border” card */

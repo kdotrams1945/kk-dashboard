@@ -67,7 +67,7 @@ export default function Home() {
       // minHeight: '100vh', // Ensures the container takes up the full viewport height
     }}>
       <CardContent>
-        <Typography component="h2" variant="h3" gutterBottom>
+        <Typography component="h2" variant="h4" gutterBottom>
          Enter height and weight
         </Typography>
       <form onSubmit={handleSubmit2}>
