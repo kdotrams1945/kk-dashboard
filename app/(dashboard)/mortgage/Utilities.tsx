@@ -2,7 +2,7 @@
 import React from "react";
 import { AmortizationPeriodDetail, AmortizationSchedule } from "./DataModel";
 
-export function GetYearlyResults(s: AmortizationSchedule, n:number=1): AmortizationPeriodDetail[] {
+export function GetYearlyResults(s: AmortizationSchedule|null, n:number=1): AmortizationPeriodDetail[] {
   const count = n*12;
   return React.useMemo<AmortizationPeriodDetail[]>(() => {
     if (s == null) {

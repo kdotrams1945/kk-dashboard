@@ -22,7 +22,7 @@ import PeriodDetailsTable from "./PeriodDetailsTable";
 import { GetYearlyResults } from "./Utilities";
 
 export default function Home() {
-  const [schedule, setSchedule] = useState<AmortizationSchedule>();
+  const [schedule, setSchedule] = useState<AmortizationSchedule | null>(null);
   const [formValues, setFormValues] = useState<FormValues>({
     loanAmount: 200000,
     interestRate: 7.5,
@@ -216,7 +216,7 @@ export default function Home() {
   }
 }
 
-function showMonthlyPayment(b: AmortizationSchedule) {
+function showMonthlyPayment(b: AmortizationSchedule|null) {
   if (b != null) {
     var interestPaymentsTotal: number = 0;
     var principalPayment: number = 0;
@@ -288,7 +288,7 @@ function showMonthlyPayment(b: AmortizationSchedule) {
   return null;
 }
 
-function PaymentCharts({ s }: { s: AmortizationSchedule }) {
+function PaymentCharts({ s }: { s: AmortizationSchedule|null }) {
   const data: AmortizationPeriodDetail[] = GetYearlyResults(s);
 
   return (
@@ -334,7 +334,7 @@ function PaymentCharts({ s }: { s: AmortizationSchedule }) {
   );
 }
 
-function LoanBalanceChart({ s }: { s: AmortizationSchedule }) {
+function LoanBalanceChart({ s }: { s: AmortizationSchedule|null }) {
   const data = GetYearlyResults(s);
 
   return (

@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import { AmortizationPeriodDetail, AmortizationSchedule } from "./DataModel";
 import { GetYearlyResults } from "./Utilities";
 
-export default function PeriodDetailsTable({ s }: { s: AmortizationSchedule }) {
+export default function PeriodDetailsTable({ s }: { s: AmortizationSchedule|null }) {
    const rows:AmortizationPeriodDetail[] = GetYearlyResults(s,2);
    console.log(rows.length);
    console.log(rows);
