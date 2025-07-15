@@ -3,6 +3,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  Link,
   Typography,
 } from "@mui/material";
 
@@ -29,7 +30,7 @@ export function DocItemOnCard({
     <Card sx={{ height: "100%", p: 2, borderRadius: 8 }} elevation={elevation}>
       <CardContent>
         {DocItemPlain({ item })}
-        {linkExists ? (
+        {/* {linkExists ? (
           <CardActions sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
               size="small"
@@ -42,7 +43,7 @@ export function DocItemOnCard({
           </CardActions>
         ) : (
           <div />
-        )}
+        )} */}
       </CardContent>
     </Card>
   );
@@ -50,12 +51,20 @@ export function DocItemOnCard({
 
 export function DocItemPlain({ item }: { item: DocumentItem }) {
   const isSinglePoint = item.points && item.points.length === 1;
-
+  const linkExists = item.link != null;
   return (
     <div>
+      {linkExists ?
+     (<Link href={item.link}>
       <Typography variant="h6" gutterBottom>
         {item.title}
       </Typography>
+      </Link> ): 
+     (<Typography variant="h6" gutterBottom>
+      {item.title}
+    </Typography>)} 
+
+
       <Typography variant="subtitle2" gutterBottom>
         {item.subtitle}
       </Typography>
