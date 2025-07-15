@@ -7,19 +7,18 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { LineChart } from "@mui/x-charts/LineChart";
 import React, { useState } from "react";
 
 import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import Grid from "@mui/material/Grid";
-import { PieChart } from "@mui/x-charts/PieChart";
 import {
-  AmortizationPeriodDetail,
   AmortizationSchedule,
   FormValues,
 } from "./DataModel";
+import { LoanBalanceChart } from "./LoanBalanceChart";
+import { PaymentCharts } from "./PaymentCharts";
+import { PaymentPieChart } from "./PaymentPieChart";
 import PeriodDetailsTable from "./PeriodDetailsTable";
-import { GetYearlyResults } from "./Utilities";
 
 export default function Home() {
   const [schedule, setSchedule] = useState<AmortizationSchedule | null>(null);
@@ -73,9 +72,8 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
         columnSpacing={{ xs: 1, sm: 2, md: 5 }}
         columns={{ xs: 4, sm: 8 }}
       >
-        {/* <Grid size={4}>{showForm()}</Grid> */}
         <Grid size={4}>{showForm()}</Grid>
-        <Grid size={4}>{showMonthlyPayment(schedule)}</Grid>
+        <Grid size={4}><PaymentPieChart schedule={schedule}/></Grid>
         <Grid size={4}>
           {isCalculated ? (
             <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
@@ -94,7 +92,7 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
             <div />
           )}
         </Grid>
-        <Grid size={8}>
+        <Grid size={12}>
           {isCalculated ? (
             <RaisedBorderCard padding={3}>
                <Typography component="h3" variant="h5" gutterBottom>
@@ -215,167 +213,3 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
     );
   }
 }
-
-function showMonthlyPayment(b: AmortizationSchedule|null) {
-  if (b != null) {
-    var interestPaymentsTotal: number = 0;
-    var principalPayment: number = 0;
-    for (let num of b.details) {
-      interestPaymentsTotal += num.interestPayment;
-      principalPayment += num.principalPayment;
-    }
-    return (
-      <RaisedBorderCard padding={2}
-        sx={{
-          height: "100%",
-          display: "grid",
-          justifyContent: "center", // Centers horizontally
-          alignItems: "center", // Centers vertically
-          // minHeight: '100vh', // Ensures the container takes up the full viewport height
-        }}
-      >
-        <CardContent>
-          <PieChart
-            slotProps={{
-              legend: {
-                direction: "horizontal",
-                position: {
-                  vertical: "bottom",
-                  horizontal: "center",
-                },
-              },
-            }}
-            series={[
-              {
-                data: [
-                  {
-                    id: 0,
-                    value: interestPaymentsTotal,
-                    label: "Interest Payments",
-                  },
-                  { id: 1, value: principalPayment, label: "Loan Payments" },
-                ],
-                // innerRadius: 50,
-                // // outerRadius: 100,
-                paddingAngle: 1,
-                cornerRadius: 1,
-                arcLabel: (item) => `${item.value.toFixed(0)}`,
-                highlightScope: { fade: "global", highlight: "item" },
-                faded: {
-                  innerRadius: 30,
-                  additionalRadius: -30,
-                  color: "gray",
-                },
-              },
-            ]}
-            // margin={10}
-            height={400}
-          />
-
-          <br />
-          {/* <Divider/>
-          <Typography align="center" component="h3" sx={{ mb: 2 }}>
-            Monthly Payment is ${b.monthlyPayment.toFixed(2)}
-          </Typography>
-          
-          <Typography align="center" component="h3" sx={{ mb: 2 }}>
-            Total interest payments ${interestPaymentsTotal.toFixed(2)}
-          </Typography> */}
-        </CardContent>
-      </RaisedBorderCard>
-    );
-  }
-  return null;
-}
-
-function PaymentCharts({ s }: { s: AmortizationSchedule|null }) {
-  const data: AmortizationPeriodDetail[] = GetYearlyResults(s);
-
-  return (
-    <RaisedBorderCard
-   padding={2}
-      sx={{
-        display: "grid",
-        justifyContent: "center", // Centers horizontally
-        alignItems: "center", // Centers vertically
-        // minHeight: '100vh', // Ensures the container takes up the full viewport height
-      }}
-    >
-      <LineChart
-        dataset={data as any}
-        height={400}
-        width={400}
-        xAxis={[
-          { id: "period", dataKey: "period", scaleType: "linear", min: 1 },
-        ]}
-        //  yAxis={[{ width: 80 }]}
-        series={[
-          {
-            id: "principal",
-            label: "Principal",
-            dataKey: "principalPayment",
-            stack: "total",
-            area: true,
-            curve: "catmullRom",
-            showMark: false,
-          },
-          {
-            id: "interest",
-            label: "Interest",
-            dataKey: "interestPayment",
-            stack: "total",
-            area: true,
-            curve: "catmullRom",
-            showMark: false,
-          },
-        ]}
-      />
-    </RaisedBorderCard>
-  );
-}
-
-function LoanBalanceChart({ s }: { s: AmortizationSchedule|null }) {
-  const data = GetYearlyResults(s);
-
-  return (
-    <RaisedBorderCard
-    padding={2}
-      sx={{
-        display: "grid",
-        justifyContent: "center", // Centers horizontally
-        alignItems: "center", // Centers vertically
-        // minHeight: '100vh', // Ensures the container takes up the full viewport height
-      }}
-    >
-      <LineChart
-        dataset={data as any}
-        height={400}
-        width={500}
-        xAxis={[
-          { id: "period", dataKey: "period", scaleType: "linear", min: 1 },
-        ]}
-        yAxis={[{ width: 80, min: 0 }]}
-        series={[
-          {
-            id: "balance",
-            label: "Balance",
-            dataKey: "loanBalance",
-            curve: "catmullRom",
-            showMark: false,
-            area: true,
-          },
-        ]}
-      />
-    </RaisedBorderCard>
-  );
-}
-
-// import { Typography } from "@mui/material";
-
-// export default function Home() {
-//   return (
-//     <Typography variant="h5" gutterBottom>
-//      Coming Soon!
-//     </Typography>
-//   );
-// }
