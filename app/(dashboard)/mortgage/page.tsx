@@ -75,7 +75,7 @@ export default function Home() {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          size={4}
+          size={8}
         >
           {showForm()}
         </Grid>

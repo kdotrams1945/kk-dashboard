@@ -3,6 +3,7 @@ import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { AmortizationSchedule } from "./DataModel";
 import { GetYearlyResults } from "./Utilities";
+import { Typography } from "@mui/material";
 
 export function LoanBalanceChart({ s }: { s: AmortizationSchedule | null; }) {
   const data = GetYearlyResults(s);
@@ -17,6 +18,9 @@ export function LoanBalanceChart({ s }: { s: AmortizationSchedule | null; }) {
         // minHeight: '100vh', // Ensures the container takes up the full viewport height
       }}
     >
+    <Typography component="h3" variant="h6" gutterBottom textAlign={"center"}>
+          Loan Balance
+          </Typography>
       <LineChart
         dataset={data as any}
         height={400}

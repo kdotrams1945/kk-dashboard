@@ -20,11 +20,13 @@ export function PaymentPieChart({ schedule }: { schedule: AmortizationSchedule|n
           display: "grid",
           justifyContent: "center", // Centers horizontally
           alignItems: "center", // Centers vertically
-          // minHeight: '100vh', // Ensures the container takes up the full viewport height
         }}
       >
-        <CardContent>
-          <PieChart hideLegend={true}
+         <Typography component="h3" variant="h6" gutterBottom textAlign={"center"}>
+          Total Payments :{'$ ' + (interestPaymentsTotal+principalPayment).toFixed(2)}
+          </Typography>
+       
+          <PieChart  
             slotProps={{
               legend: {
                 direction: "horizontal",
@@ -32,7 +34,10 @@ export function PaymentPieChart({ schedule }: { schedule: AmortizationSchedule|n
                   vertical: "bottom",
                   horizontal: "center",
                 },
+                
               },
+              tooltip: { hidden: true },
+        
             }}
             series={[
               {
@@ -41,24 +46,27 @@ export function PaymentPieChart({ schedule }: { schedule: AmortizationSchedule|n
                     id: 0,
                     value: interestPaymentsTotal,
                     label: "Interest Payments",
+                    
                   },
                   { id: 1, value: principalPayment, label: "Loan Payments", },
                 ],
-                // innerRadius: 50,
-                // // outerRadius: 100,
+                 innerRadius: 50,
+                // outerRadius: 100,
                 paddingAngle: 1,
                 cornerRadius: 1,
-                arcLabel: (item) => `${item.value.toFixed(0)}`,
+                
+                arcLabel: (item) => '$' + `${item.value.toFixed(2)}`,
                 highlightScope: { fade: "global", highlight: "item" },
                 faded: {
-                  innerRadius: 30,
+                  innerRadius: 90,
                   additionalRadius: -30,
                   color: "gray",
                 },
               },
             ]}
-
-            height={400} />
+           
+           height={400}
+             />
           <Typography align="left" variant="caption" sx={{ mb: 2 }}>
             Monthly Payment: ${schedule.monthlyPayment.toFixed(2)}
           </Typography>
@@ -66,7 +74,7 @@ export function PaymentPieChart({ schedule }: { schedule: AmortizationSchedule|n
           <Typography align="left" variant="caption" component="h3" sx={{ mb: 2 }}>
             Total interest payments : ${interestPaymentsTotal.toFixed(2)}
           </Typography>
-        </CardContent>
+       
       </RaisedBorderCard>
     );
   }

@@ -15,7 +15,7 @@ import { LoanBalanceChart } from "../LoanBalanceChart";
 import PeriodDetailsTable from "../PeriodDetailsTable";
 
 export default function MortgageResultsPage() {
-
+  /* ---------------- state ---------------- */
   const params = useSearchParams();
   const [schedule, setSchedule] = useState<AmortizationSchedule | null>(null);
 
@@ -30,22 +30,22 @@ export default function MortgageResultsPage() {
       .catch(console.error);
   }, [params]);
 
-  
-  if (!schedule) return <p>Loading…</p>;       
+  /* -------- render -------- */
+  if (!schedule) return <p>Loading…</p>;          // minimal fallback
 
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Grid container spacing={2}>
         <Grid alignContent={"center"} size={12}><PaymentPieChart schedule={schedule} /></Grid>
-        <Grid container spacing={1}>
+       
         <Grid size={6}><PaymentCharts  s={schedule} /></Grid>
         <Grid size={6}><LoanBalanceChart s={schedule} /></Grid>
-        </Grid>
+      
         
 
         <Grid size={12}>
           <RaisedBorderCard padding={3}>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h6"  textAlign={"center"} gutterBottom>
               Amortization Period Details
             </Typography>
             <CardContent>
