@@ -12,10 +12,7 @@ import React, { useEffect, useState } from "react";
 import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import Grid from "@mui/material/Grid";
 import { AmortizationSchedule, FormValues } from "./DataModel";
-import { LoanBalanceChart } from "./LoanBalanceChart";
-import { PaymentCharts } from "./PaymentCharts";
-import { PaymentPieChart } from "./PaymentPieChart";
-import PeriodDetailsTable from "./PeriodDetailsTable";
+
 import { useRouter } from "next/navigation";
 
 export default function Home() {
