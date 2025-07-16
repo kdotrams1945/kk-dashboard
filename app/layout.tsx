@@ -7,14 +7,15 @@ import { NextAppProvider } from '@toolpad/core/nextjs';
 import * as React from 'react';
 import theme from '../theme';
 import logo from './images/KKLogoNew.png'
-import { Home } from '@mui/icons-material';
-
+import { HomeOutlined } from '@mui/icons-material';
+import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined';
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import Image from 'next/image'
 
 const NAVIGATION: Navigation = [
   {segment: '',
   title: 'About Me',
-  icon: <Person/>
+  icon: <HomeOutlined/>
   },
   // {
   //   segment: '',
@@ -34,12 +35,12 @@ const NAVIGATION: Navigation = [
   {
     segment: 'mortgage',
     title: 'Mortgage',
-    icon: <Home/>,
+    icon: <AddBusinessOutlinedIcon/>,
   },
   {
     segment: 'options',
     title: 'Options Pricing',
-    icon: <Home/>,
+    icon: <RequestQuoteOutlinedIcon/>,
   }
   
 ];

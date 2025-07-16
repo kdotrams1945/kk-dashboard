@@ -34,9 +34,19 @@ export default function MortgageResultsPage() {
   if (!schedule) return <p>Loading…</p>;          // minimal fallback
 
   return (
-    <Box sx={{ flexGrow: 1, p: 2 }}>
-      <Grid container spacing={2}>
-        <Grid alignContent={"center"} size={12}><PaymentPieChart schedule={schedule} /></Grid>
+    
+      <Grid container  
+      display={"flex"}
+      rowSpacing={5}
+      columnSpacing={{ xs: 1, sm: 2, md: 5 }}
+      columns={{ xs: 4, sm: 8, md:12 }}>
+        <Grid size={12}>
+        <Typography variant="h4"  textAlign={"center"} gutterBottom>
+             Loan Payment Analysis
+            </Typography>
+            </Grid>
+        <Grid  justifyContent="center"
+          alignItems="center" size={12}><PaymentPieChart schedule={schedule} /></Grid>
        
         <Grid size={6}><PaymentCharts  s={schedule} /></Grid>
         <Grid size={6}><LoanBalanceChart s={schedule} /></Grid>
@@ -46,7 +56,7 @@ export default function MortgageResultsPage() {
         <Grid size={12}>
           <RaisedBorderCard padding={3}>
             <Typography variant="h6"  textAlign={"center"} gutterBottom>
-              Amortization Period Details
+               Period Details
             </Typography>
             <CardContent>
               <Box mt={4}>
@@ -56,6 +66,6 @@ export default function MortgageResultsPage() {
           </RaisedBorderCard>
         </Grid>
       </Grid>
-    </Box>
+   
   );
 }
