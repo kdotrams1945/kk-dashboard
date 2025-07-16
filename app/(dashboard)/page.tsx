@@ -5,6 +5,7 @@ import { MyProjects } from "./MyProjects";
 import { MySkillSet } from "./MySkillSet";
 import { MyStatement } from "./MyStatement";
 import { MyWorkExperience } from "./MyWorkExperience";
+import { MyHobbies } from "./MyHobbies";
 
 export default function HomePage() {
   return (
@@ -32,6 +33,9 @@ export default function HomePage() {
       </Grid>
       <Grid size={12}>
         <MyWorkExperience/>
+      </Grid>
+      <Grid size={12}>
+        <MyHobbies/>
       </Grid>
     </Grid>
   );

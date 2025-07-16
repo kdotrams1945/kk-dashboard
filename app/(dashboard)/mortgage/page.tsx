@@ -7,60 +7,59 @@ import InputAdornment from "@mui/material/InputAdornment";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import Grid from "@mui/material/Grid";
-import {
-  AmortizationSchedule,
-  FormValues,
-} from "./DataModel";
+import { AmortizationSchedule, FormValues } from "./DataModel";
 import { LoanBalanceChart } from "./LoanBalanceChart";
 import { PaymentCharts } from "./PaymentCharts";
 import { PaymentPieChart } from "./PaymentPieChart";
 import PeriodDetailsTable from "./PeriodDetailsTable";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();       
   const [schedule, setSchedule] = useState<AmortizationSchedule | null>(null);
-  const [formValues, setFormValues] = useState<FormValues>({
-    loanAmount: 200000,
-    interestRate: 7.5,
-    years: 30,
-    extraPayment: 0,
-  });
 
-  function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-
-    let data = {
-      loan: formValues.loanAmount.toString(),
-      yearlyInterestRate: formValues.interestRate.toString(),
-      years: formValues.years.toString(),
-      extraPayment: formValues.extraPayment.toString(),
+  
+  const [formValues, setFormValues] = useState<FormValues>(() => {
+    // load stored values
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mortgageForm");
+      if (saved) return JSON.parse(saved) as FormValues;
+    }
+    return {
+      loanAmount: 200000,
+      interestRate: 7.5,
+      years: 30,
+      extraPayment: 0,
     };
-    console.log(data);
-    const urlParams = new URLSearchParams(data);
-   // const url = `http://localhost:8080/amortizationSchedule?${urlParams}`;
-const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedule?${urlParams}`;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("Success:", response);
-        setSchedule(response);
-      })
-      .catch((error) => console.error("Error:", error));
+  });
+  
+  useEffect(() => {
+    localStorage.setItem("mortgageForm", JSON.stringify(formValues));
+  }, [formValues]);
+
+  
+
+  function handleSubmit(event: React.FormEvent) {   
+    event.preventDefault();
+    const qs = new URLSearchParams({
+      loan: String(formValues.loanAmount),
+      yearlyInterestRate: String(formValues.interestRate),
+      years: String(formValues.years),
+      extraPayment: String(formValues.extraPayment),
+    }).toString();
+    router.push(`/mortgage/results?${qs}`);
   }
+ 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
   };
+
   var isCalculated = schedule != null;
 
   return (
@@ -72,41 +71,13 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
         columnSpacing={{ xs: 1, sm: 2, md: 5 }}
         columns={{ xs: 4, sm: 8 }}
       >
-        <Grid size={4}>{showForm()}</Grid>
-        <Grid size={4}><PaymentPieChart schedule={schedule}/></Grid>
-        <Grid size={4}>
-          {isCalculated ? (
-            <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <PaymentCharts s={schedule} />
-            </Box>
-          ) : (
-            <div />
-          )}
-        </Grid>
-        <Grid size={4}>
-          {isCalculated ? (
-            <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <LoanBalanceChart s={schedule} />
-            </Box>
-          ) : (
-            <div />
-          )}
-        </Grid>
-        <Grid size={12}>
-          {isCalculated ? (
-            <RaisedBorderCard padding={3}>
-               <Typography component="h3" variant="h5" gutterBottom>
-            Amortization Period Details
-          </Typography>
-              <CardContent>
-                <Box mt={4}>
-                  <PeriodDetailsTable s={schedule} />
-                </Box>
-              </CardContent>
-            </RaisedBorderCard>
-          ) : (
-            <div />
-          )}
+        <Grid
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          size={4}
+        >
+          {showForm()}
         </Grid>
       </Grid>
     </Box>
@@ -115,7 +86,7 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
   function showForm() {
     return (
       <RaisedBorderCard
-      padding={1}
+        padding={1}
         sx={{
           height: "100%",
           display: "grid",
@@ -125,7 +96,7 @@ const url= `https://kkbackend-production-d38e.up.railway.app/amortizationSchedul
         }}
       >
         <CardContent>
-          <Typography component="h3" variant="h5" gutterBottom>
+          <Typography component="h3" variant="h5" gutterBottom textAlign={"center"}>
             Loan details
           </Typography>
 

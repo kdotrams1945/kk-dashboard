@@ -23,7 +23,7 @@ export function PaymentCharts({ s }: { s: AmortizationSchedule | null; }) {
       <LineChart
         dataset={data as any}
         height={400}
-        width={400}
+         width={400}
         xAxis={[
           { id: "Month", label: "Month", dataKey: "period", scaleType: "linear", min: 1 },
         ]}

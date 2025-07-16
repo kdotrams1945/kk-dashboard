@@ -20,7 +20,7 @@ export function LoanBalanceChart({ s }: { s: AmortizationSchedule | null; }) {
       <LineChart
         dataset={data as any}
         height={400}
-        width={500}
+        width={440}
         xAxis={[
           { id: "Month", label: "Month", dataKey: "period", scaleType: "linear", min: 1, },
         ]}

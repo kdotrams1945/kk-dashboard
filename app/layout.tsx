@@ -35,6 +35,11 @@ const NAVIGATION: Navigation = [
     segment: 'mortgage',
     title: 'Mortgage',
     icon: <Home/>,
+  },
+  {
+    segment: 'options',
+    title: 'Options Pricing',
+    icon: <Home/>,
   }
   
 ];

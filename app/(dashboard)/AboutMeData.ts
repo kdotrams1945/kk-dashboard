@@ -10,6 +10,7 @@ import {
 } from "react-icons/si";
 import { DocumentItem } from "./DocItem";
 
+//https://www.investopedia.com/trading/options-risk-graphs/
 export const workExperience: DocumentItem[] = [
   {
     title: "Assistant Tutor in CS124 : Intro to Computer Science I",
@@ -50,6 +51,9 @@ export const education: DocumentItem[] = [
       "Introduction to C++",
       "Introduction to Java",
       "Numerical Methods",
+      "Differential Equations",
+      "Intro to Computer Systems",
+      "Real Analysis"
     ],
   },
   {
@@ -64,33 +68,18 @@ export const projects: DocumentItem[] = [
     title: "Mortgage Calculator",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
-      "Developed a loan-amortization app that calculates schedules in real time from user inputs, visualized loan balance and principal-vs-interest splits with responsive area & pie charta, and optimized custom amortization algorithm to generate a month-to-month schedule.",
+      "Developed a full-stack loan-amortization app that calculates amortization schedules from user inputs (loan-details) and visualizes loan balance and principal-vs-interest splits with responsive charts and tables.",
     ],
     link: "/mortgage",
   },
   {
-    title: "Options Pricing Calculator",
+    title: "Options Payoff Charts",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
-      "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot API. Developed a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios"
+      "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot. Developed a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios. "
     ],
     link: "/options",
   },
-  {
-    title: "Mortgage Calculator12",
-    subtitle: "Java, Springboot, React, Next.js, MaterialUI",
-    points: [
-      "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts, Optimized custom amortization algorithm to generate 360-month schedule",
-    ],
-  },
-  {
-    title: "Mortgage Calculator112",
-    subtitle: "Java, Springboot, React, Next.js, MaterialUI",
-    points: [
-      "Developed a React / TypeScript loan-amortization app that recalculates schedules in real time from user inputs, Visualized loan balance and principal-vs-interest splits with responsive area & pie charts, Optimized custom amortization algorithm to generate 360-month schedule",
-    ],
-  },
-
 ];
 
 export const awards: DocumentItem[] = [
@@ -119,6 +108,14 @@ export const skills: DocumentItem[] = [
   },
 ];
 
+export const hobbies: DocumentItem[] = [
+  {
+    title:"Hobbies",
+    subtitle: "",
+    points: ['Running', 'Lifting Weights', 'Playing Disc Golf', 'Photography', 'Travelling/Exploring the Outdoors'],
+  },
+]
+
 export const skillIcons = [
   { name: "Java", Icon: DiJava, color: "#F89820", dx: 6, dy: 7 },
   { name: "Python", Icon: SiPython, color: "#3776AB", dx: 8, dy: 5 },
@@ -129,3 +126,8 @@ export const skillIcons = [
   { name: "SpringBoot", Icon: SiSpringboot, color: "#3178C6", dx: 6, dy: 10 },
   { name: "MongoDB", Icon: SiMongodb, color: "#3178C6", dx: 6, dy: 10 },
 ];
+
+
+
+
+
