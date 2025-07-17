@@ -18,9 +18,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { LineChart } from "@mui/x-charts/LineChart";
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
+import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 export default function Home() {
-  const [optionResult, setOptionResult] = useState<OptionProfitResult>();
-  const [optionResult2, setOptionResult2] = useState<OptionProfitResult>();
+  const [optionResult, setOptionResult] = useState<OptionProfitResult | null>(null);
+  const [optionResult2, setOptionResult2] = useState<OptionProfitResult| null>(null);
   const [formValues, setFormValues] = useState<FormValues>({
     stockPrice: 210,
    
@@ -346,12 +347,13 @@ function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
   const label3 = s.labels[2];
   console.log(data);
   return (
-    <Card
+    <RaisedBorderCard
+    
       sx={{
-        display: "grid",
+       
         justifyContent: "center", // Centers horizontally
         alignItems: "center", // Centers vertically
-        // minHeight: '100vh', // Ensures the container takes up the full viewport height
+         minHeight: '70vh', // Ensures the container takes up the full viewport height
       }}
     >
       <LineChart
@@ -368,7 +370,7 @@ function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
             label: label1,
             dataKey: "profit1",
             curve: "linear",
-            showMark: true,
+            showMark: false,
          //   area : true
           },
           {
@@ -389,6 +391,6 @@ function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
       >
          
         </LineChart>
-    </Card>
+    </RaisedBorderCard>
   );
 }
