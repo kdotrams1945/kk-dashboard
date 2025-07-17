@@ -345,18 +345,16 @@ export default function Home() {
 }
 
 function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
+  const data = React.useMemo(() => {
+    if (s == null) {
+      return [];
+    }
+    return s.results;
+  }, [s]);
 
   if (s == null) {
     return null;  
   }
-  const data =
-   React.useMemo(
-    
-          () =>
-            // var details = s.details;
-           s == null ? [] : s.results,
-          [s]
-        );
   const label1 = s.labels[0];
   const label2 = s.labels[1];
   const label3 = s.labels[2];
