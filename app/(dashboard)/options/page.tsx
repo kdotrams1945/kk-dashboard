@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
+import { SelectChangeEvent } from '@mui/material/Select';
 
 import { FormValues, OptionProfitResult } from "./OptionDataModel";
 
@@ -79,10 +80,20 @@ export default function Home() {
       .catch((error) => console.error("Error:", error));
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
-    console.log(formValues);
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   var isCalculated = optionResult != null;
@@ -136,7 +147,7 @@ export default function Home() {
     name="item1Type"
     value={formValues.item1Type}
     label="item1Type"
-    onChange={handleChange}
+    onChange={handleSelectChange}
   >
     <MenuItem value={'Call'}>Call</MenuItem>
     <MenuItem value={'Put'}>Put</MenuItem>
@@ -148,7 +159,7 @@ export default function Home() {
         type="number"
         name="item1StrikePrice"
         value={formValues.item1StrikePrice}
-        onChange={handleChange}
+        onChange={handleTextFieldChange}
         slotProps={{
           input: {
             startAdornment: (
@@ -164,7 +175,7 @@ export default function Home() {
         type="number"
         name="item1DaysUntillExpiry"
         value={formValues.item1DaysUntillExpiry}
-        onChange={handleChange} />
+        onChange={handleTextFieldChange} />
       <TextField
         required
         id="outlined-item1contracts"
@@ -172,7 +183,7 @@ export default function Home() {
         type="number"
         name="item1contracts"
         value={formValues.item1Contracts}
-        onChange={handleChange} />
+        onChange={handleTextFieldChange} />
     </Stack>
   </Card>;
   return item1;
@@ -196,7 +207,7 @@ export default function Home() {
     value={formValues.item2Type}
     label="item2Type"
     name="item2Type"
-    onChange={handleChange}
+    onChange={handleSelectChange}
   >
     <MenuItem value={'Call'}>Call</MenuItem>
     <MenuItem value={'Put'}>Put</MenuItem>
@@ -208,7 +219,7 @@ export default function Home() {
         type="number"
         name="item2strikePrice"
         value={formValues.item2strikePrice}
-        onChange={handleChange}
+        onChange={handleTextFieldChange}
         slotProps={{
           input: {
             startAdornment: (
@@ -224,7 +235,7 @@ export default function Home() {
         type="number"
         name="item2daysUntilExpiry"
         value={formValues.item2daysUntilExpiry}
-        onChange={handleChange} />
+        onChange={handleTextFieldChange} />
       <TextField
         required
         id="outlined-item2contracts"
@@ -232,7 +243,7 @@ export default function Home() {
         type="number"
         name="item2contracts"
         value={formValues.item2contracts}
-        onChange={handleChange} />
+        onChange={handleTextFieldChange} />
     </Stack>
   </Card>;
   return item2;
@@ -267,7 +278,7 @@ export default function Home() {
                 type="number"
                 name="yearlyInterestRate"
                 value={formValues.yearlyInterestRate}
-                onChange={handleChange}
+                onChange={handleTextFieldChange}
               />
               <TextField
                 required
@@ -276,7 +287,7 @@ export default function Home() {
                 type="number"
                 name="stockPrice"
                 value={formValues.stockPrice}
-                onChange={handleChange}
+                onChange={handleTextFieldChange}
                 slotProps={{
                   input: {
                     startAdornment: (
@@ -292,7 +303,7 @@ export default function Home() {
                 type="number"
                 name="sigma"
                 value={formValues.sigma}
-                onChange={handleChange}
+                onChange={handleTextFieldChange}
               />
                <TextField
                 required
@@ -301,7 +312,7 @@ export default function Home() {
                 type="number"
                 name="quantity"
                 value={formValues.quantity}
-                onChange={handleChange}
+                onChange={handleTextFieldChange}
               />
             </Stack>
             <Divider orientation="vertical" flexItem />
