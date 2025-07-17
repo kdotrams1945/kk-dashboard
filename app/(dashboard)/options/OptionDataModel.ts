@@ -9,7 +9,7 @@ export interface FormValues {
   item1StrikePrice: number;
   item1DaysUntillExpiry: number;
   item1Contracts: number;
-  item1Type:String;
+  item1Type:string;
   item2strikePrice: number;
   item2daysUntilExpiry: number;
   item2contracts: number;
