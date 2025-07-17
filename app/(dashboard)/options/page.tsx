@@ -345,9 +345,13 @@ export default function Home() {
 }
 
 function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
-  
+
+  if (s == null) {
+    return null;  
+  }
   const data =
    React.useMemo(
+    
           () =>
             // var details = s.details;
            s == null ? [] : s.results,
