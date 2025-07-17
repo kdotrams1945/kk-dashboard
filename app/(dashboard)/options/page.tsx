@@ -333,13 +333,12 @@ export default function Home() {
 }
 
 function PaymentCharts({ s }: { s: OptionProfitResult }) {
+  
   const data =
-    s == null
-      ? []
-      : React.useMemo(
+   React.useMemo(
           () =>
             // var details = s.details;
-            s.results,
+           s == null ? [] : s.results,
           [s]
         );
   const label1 = s.labels[0];
