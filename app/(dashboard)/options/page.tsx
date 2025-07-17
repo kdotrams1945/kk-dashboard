@@ -356,8 +356,8 @@ function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
     >
       <LineChart
         dataset={data as any}
-        height={700}
-        width={700}
+         height={400}
+        // width={400}
         
         grid={{ vertical: true, horizontal: true }}
         xAxis={[{ id: "price", dataKey: "price" }]}
