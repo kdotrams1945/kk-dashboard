@@ -11,5 +11,5 @@ export function GetYearlyResults(s: AmortizationSchedule|null, n:number=2): Amor
     return s.details.filter(
       (d) => (d.period - 1) % count === 0 || d.period === s.details.length
     );
-  }, [s]);
+  }, [s, count]);
 }
