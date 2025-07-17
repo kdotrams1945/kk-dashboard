@@ -332,7 +332,7 @@ export default function Home() {
   }
 }
 
-function PaymentCharts({ s }: { s: OptionProfitResult }) {
+function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
   
   const data =
    React.useMemo(
@@ -355,7 +355,7 @@ function PaymentCharts({ s }: { s: OptionProfitResult }) {
       }}
     >
       <LineChart
-        dataset={data}
+        dataset={data as any}
         height={700}
         width={700}
         
