@@ -1,14 +1,16 @@
 import { DiJava } from "react-icons/di";
 import {
-    SiCplusplus,
-    SiMongodb,
-    SiMysql,
-    SiPython,
-    SiReact,
-    SiSpringboot,
-    SiTypescript,
+  SiCplusplus,
+  SiMongodb,
+  SiMysql,
+  SiPython,
+  SiReact,
+  SiSpringboot,
+  SiTypescript,
 } from "react-icons/si";
 import { DocumentItem } from "./DocItem";
+import UIUC from '../images/UIUC_photo.png';
+import NVHS from '../images/nvhs_logo.png';
 
 //https://www.investopedia.com/trading/options-risk-graphs/
 export const workExperience: DocumentItem[] = [
@@ -55,11 +57,13 @@ export const education: DocumentItem[] = [
       "Intro to Computer Systems",
       "Real Analysis"
     ],
+    image:UIUC.src
   },
   {
     title: "High School Diploma",
     subtitle: "Neuqua Valley High School, 8/2019-5/2023",
     points: [],
+    image:NVHS.src
   },
 ];
 
@@ -73,7 +77,7 @@ export const projects: DocumentItem[] = [
     link: "/mortgage",
   },
   {
-    title: "Options Payoff Charts",
+    title: "Options Profit/Loss",
     subtitle: "Java, Springboot, React, Next.js, MaterialUI",
     points: [
       "Engineered a full-stack web app that values multi-leg call/put strategies with the Black-Scholes model, converting user inputs (rate, volatility, strike, expiry, contract size) into real-time fair premiums via a Java / Spring Boot. Developed a React/TypeScript front-end with MaterialUI to plot profit–loss curves across stock-price ranges, expiries, and volatility scenarios. "

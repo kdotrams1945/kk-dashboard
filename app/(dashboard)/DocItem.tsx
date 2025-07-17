@@ -1,17 +1,25 @@
+'use client';
 import {
+  Avatar,
+  Box,
   Button,
   Card,
   CardActions,
   CardContent,
   Link,
+  Stack,
   Typography,
 } from "@mui/material";
+import { deepOrange } from "@mui/material/colors";
+import a from '../images/UIUC_photo.png';
 
 export interface DocumentItem {
   title: string;
   subtitle: string;
   points: string[];
   link?: string;
+  image?:string;
+
 }
 
 export function DocItemPoint({ point }: { point: string }) {
@@ -52,6 +60,7 @@ export function DocItemOnCard({
 export function DocItemPlain({ item }: { item: DocumentItem }) {
   const isSinglePoint = item.points && item.points.length === 1;
   const linkExists = item.link != null;
+  const imageExists = item.image !=null;
   return (
     <div>
       {linkExists ?
@@ -61,14 +70,18 @@ export function DocItemPlain({ item }: { item: DocumentItem }) {
       </Typography>
       </Link> ): 
      (<Typography variant="h6" gutterBottom>
-      {item.title}
+      {item.title} 
     </Typography>)} 
 
-
+<Stack direction='row' alignItems={'center'}>
+ 
+      {imageExists ? <Avatar alt={item.title} src={item.image}/> : <div/>}
+      {imageExists ? <div>&nbsp; &nbsp;</div>  : <div/>}
       <Typography variant="subtitle2" gutterBottom>
-        {item.subtitle}
-      </Typography>
-
+        {item.subtitle} 
+        </Typography>  
+      
+      </Stack>
       {isSinglePoint ? (
         <Typography variant="body1">{item.points[0]}</Typography>
       ) : (

@@ -39,7 +39,7 @@ const NAVIGATION: Navigation = [
   },
   {
     segment: 'options',
-    title: 'Options Pricing',
+    title: 'Options Profit/Loss',
     icon: <RequestQuoteOutlinedIcon/>,
   }
   
