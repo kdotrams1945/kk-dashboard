@@ -40,6 +40,13 @@ export default function Home() {
     quantity:0
   });
 
+  React.useEffect(() => {
+    const saved = localStorage.getItem('savedFormValues');
+    if (saved) {
+      setFormValues(JSON.parse(saved));
+    }
+  }, []);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     // optionResult.results[]
@@ -80,20 +87,20 @@ export default function Home() {
       .catch((error) => console.error("Error:", error));
   };
 
+  const updateFormValues = (updatedValues: Partial<FormValues>) => {
+    const newFormValues = { ...formValues, ...updatedValues };
+    setFormValues(newFormValues);
+    localStorage.setItem('savedFormValues', JSON.stringify(newFormValues));
+  };
+
   const handleTextFieldChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    updateFormValues({ [name]: value });
   };
   
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
-    setFormValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    updateFormValues({ [name]: value });
   };
 
   var isCalculated = optionResult != null;
@@ -254,12 +261,30 @@ export default function Home() {
     return (
       <Card
         sx={{
+          position: "relative",
           display: "grid",
           justifyContent: "center", // Centers horizontally
           alignItems: "center", // Centers vertically
           // minHeight: '100vh', // Ensures the container takes up the full viewport height
         }}
       >
+         <Button
+        variant="outlined"
+        color="error"
+        onClick={() => {
+          setOptionResult(null);
+          setOptionResult2(null);
+        }}
+        sx={{
+          position: 'absolute',
+          top: 10,
+          right: 10,
+          fontWeight: 600,
+          textTransform: "none",
+        }}
+      >
+        Reset Charts
+      </Button>
         <CardContent>
           <Typography component="h4" variant="h4" gutterBottom>
             Option Details
@@ -324,16 +349,6 @@ export default function Home() {
               fullWidth
               startIcon={<RequestQuoteOutlinedIcon />}
               type="submit"
-              // sx={{
-              //   background: "linear-gradient(180deg,#1d1f26 0%,#090a0f 100%)",
-              //   color: "#fff",
-              //   fontWeight: 600,
-              //   textTransform: "none",
-              //   boxShadow: "none",
-              //   "&:hover": {
-              //     background: "linear-gradient(180deg,#2b2e37 0%,#14161d 100%)",
-              //   },
-              // }}
             >
               Generate
             </Button>
