@@ -1,15 +1,14 @@
 
 import { hobbies } from "./AboutMeData";
 import { showCategoryOnSingleCard } from "./showCategoryOnSingleCard";
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-
+import SportsBasketballOutlinedIcon from '@mui/icons-material/SportsBasketballOutlined';
 export function MyHobbies() {
   return showCategoryOnSingleCard(
     "Hobbies",
     "column",
     hobbies,
     12,
-    FitnessCenterIcon,
+    SportsBasketballOutlinedIcon,
     0
   );
 }

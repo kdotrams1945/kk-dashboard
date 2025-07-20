@@ -14,8 +14,8 @@ export function showCategoryOnSingleCard(
 ) {
   return (
     <RaisedBorderCard>
-      <Stack direction={"row"} spacing={2} alignItems="center">
-        <Icon sx={{ color: "Purple", fontSize: 40, border: "aqua" }} />
+      <Stack direction={"row"} spacing={1} alignItems="center">
+        <Icon sx={{ color: "Purple", fontSize: "40", border: "aqua" }} />
         <Typography variant="h5">{category}</Typography>
       </Stack>
       

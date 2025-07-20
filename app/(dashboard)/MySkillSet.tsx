@@ -6,11 +6,15 @@ import { skillIcons } from "./AboutMeData";
 export function MySkillSet() {
   return (
     <RaisedBorderCard variant="outlined" sx={{ p: 4 }}>
-      <Stack direction={"row"} spacing={2} alignItems="center">
+      <Stack direction={"row"} spacing={1} alignItems="center">
         <HomeRepairServiceOutlinedIcon
-          sx={{ color: "Purple", fontSize: 40, border: "aqua" }} />
+          sx={{ color: "Purple", fontSize: "40", border: "aqua" }} />
         <Typography variant="h5">Skills</Typography>
       </Stack>
+      {/* <Stack direction={"row"} spacing={1} alignItems="center">
+        <Icon sx={{ color: "Purple", fontSize: "40", border: "aqua" }} />
+        <Typography variant="h5">{category}</Typography>
+      </Stack> */}
       <div>&nbsp;</div>
       <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }} alignItems="stretch">
         {skillIcons.map(({ Icon, name, color }, i) => (

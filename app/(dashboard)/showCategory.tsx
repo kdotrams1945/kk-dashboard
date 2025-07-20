@@ -15,12 +15,8 @@ export function showCategory(
 
   return (
     <RaisedBorderCard variant="outlined">
-      <Stack direction={"row"} spacing={2} alignItems="center">
-        <Icon
-          sx={{
-            color: "purple", // icon fill / font colour
-            fontSize: 40, // icon size
-          }} />
+      <Stack direction={"row"} spacing={1} alignItems="center">
+        <Icon sx={{ color: "Purple", fontSize: "40", border: "aqua" }} />
         <Typography variant="h5">{category}</Typography>
       </Stack>
       <div>&nbsp;</div>

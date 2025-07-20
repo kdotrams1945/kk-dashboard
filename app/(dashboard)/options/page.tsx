@@ -69,9 +69,9 @@ export default function Home() {
  
     console.log(data);
     const urlParams = new URLSearchParams(data);
-  //  const url = `http://localhost:8080/option-analysis?${urlParams}`;
+    const url = `http://localhost:8080/option-analysis?${urlParams}`;
   //  https://kkbackend-production-d38e.up.railway.app/
-  const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
+  //const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
     fetch(url, {
       method: "GET",
       headers: {
@@ -143,7 +143,7 @@ export default function Home() {
       Option 1
     </Typography>
     <Stack
-      direction="row"
+      direction={{ xs: 'column', sm: 'row' }}
       component="section"
       sx={{ p: 3 }}
       spacing={2}
@@ -202,7 +202,7 @@ export default function Home() {
       Option 2
     </Typography>
     <Stack
-      direction="row"
+     direction={{ xs: 'column', sm: 'row' }}
       component="section"
       sx={{ p: 3 }}
       spacing={2}
@@ -259,7 +259,7 @@ export default function Home() {
   function showForm() {
    
     return (
-      <Card
+      <RaisedBorderCard
         sx={{
           position: "relative",
           display: "grid",
@@ -291,7 +291,7 @@ export default function Home() {
           </Typography>
           <form onSubmit={handleSubmit}>
             <Stack
-              direction="row"
+              direction={{ xs: 'column', sm: 'row' }}
               component="section"
               sx={{ p: 3 }}
               spacing={2}
@@ -340,10 +340,12 @@ export default function Home() {
                 onChange={handleTextFieldChange}
               />
             </Stack>
-            <Divider orientation="vertical" flexItem />
+                <div>&nbsp;</div>
             {Item1()}
             <Divider orientation="vertical" flexItem />
+            <div>&nbsp;</div>
             {Item2()}
+            <div>&nbsp;</div>
             <Button 
               variant="contained"
               fullWidth
@@ -354,7 +356,7 @@ export default function Home() {
             </Button>
           </form>
         </CardContent>
-      </Card>
+      </RaisedBorderCard>
     );
   }
 }
