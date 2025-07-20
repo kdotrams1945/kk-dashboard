@@ -69,9 +69,9 @@ export default function Home() {
  
     console.log(data);
     const urlParams = new URLSearchParams(data);
-    const url = `http://localhost:8080/option-analysis?${urlParams}`;
+    // const url = `http://localhost:8080/option-analysis?${urlParams}`;
   //  https://kkbackend-production-d38e.up.railway.app/
-  //const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
+  const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
     fetch(url, {
       method: "GET",
       headers: {
