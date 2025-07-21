@@ -1,25 +1,25 @@
 "use client";
-import Calculate from "@mui/icons-material/CalculateRounded";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import InputAdornment from "@mui/material/InputAdornment";
+import { SelectChangeEvent } from '@mui/material/Select';
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
-import { SelectChangeEvent } from '@mui/material/Select';
 
 import { FormValues, OptionProfitResult } from "./OptionDataModel";
 
+import RaisedBorderCard from "@/app/components/RaisedBorderCard";
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { LineChart } from "@mui/x-charts/LineChart";
-import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
-import RaisedBorderCard from "@/app/components/RaisedBorderCard";
+import { OptionNotes } from "./OptionNotes";
+import { OptionPayoutGraph } from "./OptionPayoutGraph";
 export default function Home() {
   const [optionResult, setOptionResult] = useState<OptionProfitResult | null>(null);
   const [optionResult2, setOptionResult2] = useState<OptionProfitResult| null>(null);
@@ -31,7 +31,7 @@ export default function Home() {
     sigma: 0.3,
     item1StrikePrice: 220,
     item1DaysUntillExpiry: 360,
-    item1Type:'Put',
+    item1Type:'Call',
     item2strikePrice: 220,
     item2contracts:1,
     item1Contracts:1,
@@ -67,9 +67,9 @@ export default function Home() {
 
     };
  
-    console.log(data);
+ //   console.log(data);
     const urlParams = new URLSearchParams(data);
-    // const url = `http://localhost:8080/option-analysis?${urlParams}`;
+  //   const url = `http://localhost:8080/option-analysis?${urlParams}`;
   //  https://kkbackend-production-d38e.up.railway.app/
   const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
     fetch(url, {
@@ -80,7 +80,7 @@ export default function Home() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("Success:", response);
+       // console.log("Success:", response);
         setOptionResult(response[0]);
         setOptionResult2(response[1]);
       })
@@ -114,11 +114,16 @@ export default function Home() {
         columns={{ xs: 4, sm: 8 }}
       >
         <Grid size={8}>{showForm()}</Grid>
-
+        <Grid size={4}>
+         <ShowGreeks s={optionResult} t="Option 1 Greeks" />
+        </Grid>
+        <Grid size={4}>
+         <ShowGreeks s={optionResult2}  t="Option 2 Greeks" />
+        </Grid>
         <Grid size={12}>
           {isCalculated ? (
             <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <PaymentCharts s={optionResult} />
+              <OptionPayoutGraph s={optionResult} />
             </Box>
           ) : (
             <div />
@@ -127,7 +132,7 @@ export default function Home() {
          <Grid size={12}>
           {isCalculated ? (
             <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <PaymentCharts s={optionResult2} />
+              <OptionPayoutGraph s={optionResult2} />
             </Box>
           ) : (
             <div />
@@ -136,8 +141,53 @@ export default function Home() {
       </Grid>
     </Box>
   );
+  function ShowGreeks({ s , t}: { s: OptionProfitResult|null, t:string }){
+    const dataExists = s != null;
 
-  function Item1() {
+    return dataExists ? (
+    <RaisedBorderCard sx={{ padding: 2, minWidth: 250 }}>
+      <Typography variant="h6" gutterBottom>
+        {t}
+      </Typography>
+
+      <Stack direction="column" spacing={1}>
+        <Typography variant="body2">Delta (Δ) = {s.greeks.delta.toFixed(4)}</Typography>
+        <Typography variant="body2">Gamma (Γ)= {s.greeks.gamma.toFixed(4)}</Typography>
+        <Typography variant="body2">Theta (Θ) = {s.greeks.theta.toFixed(4)}</Typography>
+        <Typography variant="body2">Vega (ν)= {s.greeks.vega.toFixed(4)}</Typography>
+        <Typography variant="body2">Rho (Ρ) = {s.greeks.rho.toFixed(4)}</Typography>
+      </Stack>
+    </RaisedBorderCard>) 
+    : 
+    (<div/>);
+  }
+
+  function Stock() {
+    const item1 = <Card component="section" sx={{ p: 2, border: '1px grey' }}>
+    <Typography variant="h6" component="div">
+      Stock
+    </Typography>
+    <Stack
+      direction={{ xs: 'column', sm: 'row' }}
+      component="section"
+      sx={{ p: 3 }}
+      spacing={2}
+    >
+      <TextField
+                required
+                id="outlined-quantity"
+                label="Quantity"
+                type="number"
+                name="quantity"
+                value={formValues.quantity}
+                onChange={handleTextFieldChange}
+              />
+      </Stack>
+      </Card>;
+      return item1;
+  }
+
+  function OptionItem1() {
     const item1 = <Card component="section" sx={{ p: 2, border: '1px grey' }}>
     <Typography variant="h6" component="div">
       Option 1
@@ -186,7 +236,7 @@ export default function Home() {
       <TextField
         required
         id="outlined-item1contracts"
-        label="contracts"
+        label="Contracts"
         type="number"
         name="item1contracts"
         value={formValues.item1Contracts}
@@ -196,7 +246,7 @@ export default function Home() {
   return item1;
   }
 
-  function Item2() {
+  function OptionItem2() {
     const item2 = <Card component="section" sx={{ p: 2, border: '1px grey' }}>
     <Typography variant="h6" component="div">
       Option 2
@@ -246,7 +296,7 @@ export default function Home() {
       <TextField
         required
         id="outlined-item2contracts"
-        label="contracts"
+        label="Contracts"
         type="number"
         name="item2contracts"
         value={formValues.item2contracts}
@@ -287,8 +337,9 @@ export default function Home() {
       </Button>
         <CardContent>
           <Typography component="h4" variant="h4" gutterBottom>
-            Option Details
+            Option Strategy Details
           </Typography>
+        
           <form onSubmit={handleSubmit}>
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
@@ -296,15 +347,7 @@ export default function Home() {
               sx={{ p: 3 }}
               spacing={2}
             >
-              <TextField
-                required
-                id="outlined-yearlyInterestRate"
-                label="Yearly Interest Rate"
-                type="number"
-                name="yearlyInterestRate"
-                value={formValues.yearlyInterestRate}
-                onChange={handleTextFieldChange}
-              />
+             
               <TextField
                 required
                 id="outlined-stockPrice"
@@ -321,106 +364,61 @@ export default function Home() {
                   },
                 }}
               />
+               <TextField
+                required
+                id="outlined-yearlyInterestRate"
+                label="Risk Free Rate"
+                type="number"
+                name="yearlyInterestRate"
+                value={formValues.yearlyInterestRate}
+                onChange={handleTextFieldChange}
+              />
               <TextField
                 required
                 id="outlined-sigma"
-                label="Sigma"
+                label=" Sigma (σ)"
+
                 type="number"
                 name="sigma"
                 value={formValues.sigma}
                 onChange={handleTextFieldChange}
               />
-               <TextField
-                required
-                id="outlined-quantity"
-                label="quantity"
-                type="number"
-                name="quantity"
-                value={formValues.quantity}
-                onChange={handleTextFieldChange}
-              />
+              
             </Stack>
+            
+              <Stock/>
                 <div>&nbsp;</div>
-            {Item1()}
+            {OptionItem1()}
             <Divider orientation="vertical" flexItem />
             <div>&nbsp;</div>
-            {Item2()}
+            {OptionItem2()}
             <div>&nbsp;</div>
             <Button 
               variant="contained"
               fullWidth
               startIcon={<RequestQuoteOutlinedIcon />}
               type="submit"
+              sx={{
+                background: "linear-gradient(180deg,#1d1f26 0%,#090a0f 100%)",
+                color: "#fff",
+                fontWeight: 600,
+                textTransform: "none",
+                boxShadow: "none",
+                "&:hover": {
+                  background:
+                    "linear-gradient(180deg,#2b2e37 0%,#14161d 100%)",
+                },
+              }}
             >
-              Generate
+              Analyze Strategy
             </Button>
           </form>
+          <OptionNotes/>
         </CardContent>
       </RaisedBorderCard>
     );
   }
 }
 
-function PaymentCharts({ s }: { s: OptionProfitResult|null }) {
-  const data = React.useMemo(() => {
-    if (s == null) {
-      return [];
-    }
-    return s.results;
-  }, [s]);
 
-  if (s == null) {
-    return null;  
-  }
-  const label1 = s.labels[0];
-  const label2 = s.labels[1];
-  const label3 = s.labels[2];
-  console.log(data);
-  return (
-    <RaisedBorderCard
-    
-      sx={{
-       
-        justifyContent: "center", // Centers horizontally
-        alignItems: "center", // Centers vertically
-         minHeight: '70vh', // Ensures the container takes up the full viewport height
-      }}
-    >
-      <LineChart
-        dataset={data as any}
-         height={400}
-        // width={400}
-        
-        grid={{ vertical: true, horizontal: true }}
-        xAxis={[{ id: "price", dataKey: "price" }]}
-        yAxis={[{ width: 80 }]}
-        series={[
-          {
-            id: "profit1",
-            label: label1,
-            dataKey: "profit1",
-            curve: "linear",
-            showMark: false,
-         //   area : true
-          },
-          {
-            id: "profit2",
-            label: label2,
-            dataKey: "profit2",
-            curve: "linear",
-            showMark: false,
-          },
-          {
-            id: "profit3",
-            label: label3,
-            dataKey: "profit3",
-            curve: "linear",
-            showMark: false,
-          },
-        ]}
-      >
-         
-        </LineChart>
-    </RaisedBorderCard>
-  );
-}
+

@@ -161,7 +161,7 @@ export default function Home() {
                 startIcon={<Calculate />}
                 type="submit"
                 sx={{
-                  background: "linear-gradient(180deg,#f00f26 0%,#f00a0f 100%)",
+                  background: "linear-gradient(180deg,#1d1f26 0%,#090a0f 100%)",
                   color: "#fff",
                   fontWeight: 600,
                   textTransform: "none",

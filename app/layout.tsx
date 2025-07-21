@@ -27,11 +27,11 @@ const NAVIGATION: Navigation = [
     title: 'Applications',
   },
   
-  {
-    segment: 'BMI',
-    title: 'BMI',
-    icon: <Person/>,
-  },
+  // {
+  //   segment: 'BMI',
+  //   title: 'BMI',
+  //   icon: <Person/>,
+  // },
   {
     segment: 'mortgage',
     title: 'Mortgage',

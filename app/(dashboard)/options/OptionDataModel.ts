@@ -23,8 +23,17 @@ export interface OptionProfitResult
 {
   labels : string[];
   results : ProfitResult[];
+  greeks: OptionGreeks;
 }
 
+export interface OptionGreeks
+{
+  delta: number;
+  gamma: number;
+  rho: number;
+  theta: number;
+  vega: number;
+}
 export interface ProfitResult {
   price: number;
   profit1: number;
