@@ -114,7 +114,7 @@ export const skills: DocumentItem[] = [
 
 export const hobbies: DocumentItem[] = [
   {
-    title:"Hobbies",
+    title: "",
     subtitle: "",
     points: ['Running', 'Lifting Weights', 'Playing Disc Golf', 'Photography', 'Travelling/Exploring the Outdoors'],
   },
