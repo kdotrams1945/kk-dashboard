@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 
-import { FormValues, OptionProfitResult } from "./OptionDataModel";
+import { FormValues, OptionAnalysisResult, OptionGreeks, OptionProfitResult } from "./OptionDataModel";
 
 import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
@@ -21,8 +21,8 @@ import Select from "@mui/material/Select";
 import { OptionNotes } from "./OptionNotes";
 import { OptionPayoutGraph } from "./OptionPayoutGraph";
 export default function Home() {
-  const [optionResult, setOptionResult] = useState<OptionProfitResult | null>(null);
-  const [optionResult2, setOptionResult2] = useState<OptionProfitResult| null>(null);
+  const [analysisResult, setAnalysisResult] = useState<OptionAnalysisResult | null>(null);
+ 
   const [formValues, setFormValues] = useState<FormValues>({
     stockPrice: 210,
    
@@ -69,7 +69,7 @@ export default function Home() {
  
  //   console.log(data);
     const urlParams = new URLSearchParams(data);
-  //   const url = `http://localhost:8080/option-analysis?${urlParams}`;
+   //  const url = `http://localhost:8080/option-analysis?${urlParams}`;
   //  https://kkbackend-production-d38e.up.railway.app/
   const url = ` https://kkbackend-production-d38e.up.railway.app/option-analysis?${urlParams}`;
     fetch(url, {
@@ -80,9 +80,8 @@ export default function Home() {
     })
       .then((response) => response.json())
       .then((response) => {
-       // console.log("Success:", response);
-        setOptionResult(response[0]);
-        setOptionResult2(response[1]);
+    //    console.log("Success:", response);
+        setAnalysisResult(response);
       })
       .catch((error) => console.error("Error:", error));
   };
@@ -103,7 +102,7 @@ export default function Home() {
     updateFormValues({ [name]: value });
   };
 
-  var isCalculated = optionResult != null;
+  var isCalculated = analysisResult != null;
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid
@@ -115,15 +114,15 @@ export default function Home() {
       >
         <Grid size={8}>{showForm()}</Grid>
         <Grid size={4}>
-         <ShowGreeks s={optionResult} t="Option 1 Greeks" />
+         <ShowGreeks s={analysisResult?.greeks[0]} t="Option 1 Greeks" />
         </Grid>
         <Grid size={4}>
-         <ShowGreeks s={optionResult2}  t="Option 2 Greeks" />
+         <ShowGreeks s={analysisResult?.greeks[1]}  t="Option 2 Greeks" />
         </Grid>
         <Grid size={12}>
           {isCalculated ? (
             <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <OptionPayoutGraph s={optionResult} />
+              <OptionPayoutGraph s={analysisResult?.results[0]} />
             </Box>
           ) : (
             <div />
@@ -132,7 +131,7 @@ export default function Home() {
          <Grid size={12}>
           {isCalculated ? (
             <Box sx={{ flexDirection: "col", flexGrow: 1 }}>
-              <OptionPayoutGraph s={optionResult2} />
+              <OptionPayoutGraph s={analysisResult?.results[1]} />
             </Box>
           ) : (
             <div />
@@ -141,21 +140,21 @@ export default function Home() {
       </Grid>
     </Box>
   );
-  function ShowGreeks({ s , t}: { s: OptionProfitResult|null, t:string }){
-    const dataExists = s != null;
+  function ShowGreeks({ s , t}: { s: OptionGreeks|undefined, t:string }){
+    const dataExists = s && s != null;
 
     return dataExists ? (
     <RaisedBorderCard sx={{ padding: 2, minWidth: 250 }}>
       <Typography variant="h6" gutterBottom>
-        {t}
+        {t} 
       </Typography>
 
       <Stack direction="column" spacing={1}>
-        <Typography variant="body2">Delta (Δ) = {s.greeks.delta.toFixed(4)}</Typography>
-        <Typography variant="body2">Gamma (Γ)= {s.greeks.gamma.toFixed(4)}</Typography>
-        <Typography variant="body2">Theta (Θ) = {s.greeks.theta.toFixed(4)}</Typography>
-        <Typography variant="body2">Vega (ν)= {s.greeks.vega.toFixed(4)}</Typography>
-        <Typography variant="body2">Rho (Ρ) = {s.greeks.rho.toFixed(4)}</Typography>
+        <Typography variant="body2">Delta (Δ) = {s.delta.toFixed(4)}</Typography>
+        <Typography variant="body2">Gamma (Γ)= {s.gamma.toFixed(4)}</Typography>
+        <Typography variant="body2">Theta (Θ) = {s.theta.toFixed(4)}</Typography>
+        <Typography variant="body2">Vega (ν)= {s.vega.toFixed(4)}</Typography>
+        <Typography variant="body2">Rho (Ρ) = {s.rho.toFixed(4)}</Typography>
       </Stack>
     </RaisedBorderCard>) 
     : 

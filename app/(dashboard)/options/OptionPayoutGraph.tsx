@@ -4,9 +4,9 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import React from "react";
 import { OptionProfitResult } from "./OptionDataModel";
 
-export function OptionPayoutGraph({ s }: { s: OptionProfitResult | null; }) {
+export function OptionPayoutGraph({ s }: { s: OptionProfitResult | undefined; }) {
   const data = React.useMemo(() => {
-    if (s == null) {
+    if (!s || s == null) {
       return [];
     }
     return s.results;

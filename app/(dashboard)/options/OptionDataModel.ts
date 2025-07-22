@@ -17,13 +17,13 @@ export interface FormValues {
 
   quantity:number
 }
-  
+
+
 
 export interface OptionProfitResult
 {
   labels : string[];
   results : ProfitResult[];
-  greeks: OptionGreeks;
 }
 
 export interface OptionGreeks
@@ -39,4 +39,9 @@ export interface ProfitResult {
   profit1: number;
   profit2: number;
   profit3: number;
+}
+
+export interface OptionAnalysisResult{
+  results: OptionProfitResult[];
+  greeks : OptionGreeks[];
 }
