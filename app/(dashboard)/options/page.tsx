@@ -10,7 +10,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React, { useState } from "react";
 
-import { FormValues, OptionAnalysisResult, OptionGreeks, OptionProfitResult } from "./OptionDataModel";
+import { FormValues, OptionAnalysisResult, OptionGreeks } from "./OptionDataModel";
 
 import RaisedBorderCard from "@/app/components/RaisedBorderCard";
 import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined';
@@ -321,8 +321,7 @@ export default function Home() {
         variant="outlined"
         color="error"
         onClick={() => {
-          setOptionResult(null);
-          setOptionResult2(null);
+         setAnalysisResult(null);
         }}
         sx={{
           position: 'absolute',
