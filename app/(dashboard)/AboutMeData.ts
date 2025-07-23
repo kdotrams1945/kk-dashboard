@@ -84,6 +84,14 @@ export const projects: DocumentItem[] = [
     ],
     link: "/options",
   },
+  {
+    title: "Workout Generator",
+    subtitle: "Coming soon!",
+    points: [
+      "Developed a full-stack web app that generates personalized workout plans based on user preferences and fitness goals. The app allows users to input their fitness level, available equipment, and desired workout duration, and it generates a tailored workout plan with exercises, sets, and repetitions.",
+    ],
+    link: "/workoutGenerator",
+  }
 ];
 
 export const awards: DocumentItem[] = [
