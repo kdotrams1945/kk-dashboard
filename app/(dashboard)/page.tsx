@@ -34,6 +34,9 @@ export default function HomePage() {
       <Grid size={12}>
         <MyWorkExperience/>
       </Grid>
+
+
+      
       <Grid size={12}>
         <MyHobbies/>
       </Grid>
