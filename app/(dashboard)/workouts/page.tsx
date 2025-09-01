@@ -1,6 +1,6 @@
 "use client";
 import Calculate from '@mui/icons-material/CalculateRounded';
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Box } from '@mui/material';
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -52,8 +52,8 @@ export default function Home() {
     };
     console.log(data);
     const urlParams = new URLSearchParams(data);
-    const urlProd = `http://localhost:8080/generateRoutine?${urlParams}`;
-    //const urlProd = `https://kkbackend-production-d38e.up.railway.app/BMI?${urlParams}`
+  //  const urlProd = `http://localhost:8080/generateRoutine?${urlParams}`;
+    const urlProd = `https://kkworkout-production.up.railway.app/generateRoutine?${urlParams}`
 
     fetch(urlProd, {
       method: "GET",
@@ -162,7 +162,8 @@ export default function Home() {
    </Container>
   );
 }
-export function showWorkoutData(workouts: Workout[] | undefined) {
+
+ function showWorkoutData(workouts: Workout[] | undefined) {
   if (!workouts)
   return <div/>;
   else
