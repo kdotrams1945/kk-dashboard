@@ -27,11 +27,7 @@ const NAVIGATION: Navigation = [
     title: 'Applications',
   },
   
-  // {
-  //   segment: 'BMI',
-  //   title: 'BMI',
-  //   icon: <Person/>,
-  // },
+ 
   {
     segment: 'mortgage',
     title: 'Mortgage',
@@ -41,8 +37,12 @@ const NAVIGATION: Navigation = [
     segment: 'options',
     title: 'Options Profit/Loss',
     icon: <RequestQuoteOutlinedIcon/>,
-  }
-  
+  },
+  {
+    segment: 'workouts',
+    title: 'AI Workout Generator ',
+    icon: <Person/>,
+  },
 ];
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
